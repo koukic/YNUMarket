@@ -1,0 +1,14 @@
+<div class="col-md-6 col-md-offset-3">
+
+	<div class="edit-review-form">
+
+		 
+
+		<%= simple_form_for([@information, @review]) do |f| %>
+			<%= f.input :comment , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "Say thank you" %>
+			<%= f.button :submit, :class => "btn-custom2" %>
+		<% end %>	
+
+	</div>
+
+</div>

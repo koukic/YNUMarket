@@ -1,0 +1,252 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+$link: #444;
+$link-hover: #222;
+
+@import "bulma";
+@import "functions";
+
+
+a {
+    color: #444;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.notification {
+  border-radius: 0;
+}
+
+.notification:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.instrument-index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+  .instrument {
+    border-left: 0;
+    border-top: 0;
+    position: relative;
+    min-height: 375px;
+
+    .title {
+      line-height: 1.6rem;
+    }
+    .price {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+
+  .instrument-thumb {
+    position: relative;
+    max-height: 150px;
+    overflow: hidden;
+
+  img {
+    vertical-align: middle;
+    border-style: none;
+  }
+
+    .condition {
+      position: absolute;
+      bottom: 10px;
+      right: 9px;
+    }
+  }
+}
+
+
+
+.btn-custom {
+	color: darken(#f1c40f, 5%);
+	background-color: #fff;
+	border: 1px solid darken(#f1c40f, 5%);
+	padding: 8px 20px;
+	border-radius: 5px;
+	font-family: 'Ubuntu', sans-serif;
+	&:hover {
+		text-decoration: none;
+		background-color: darken(#f1c40f, 5%);
+		color: #fff;
+		transition: 0.5s;
+	}
+}
+
+.btn-custom2 {
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #222;
+	padding: 8px 20px;
+	border-radius: 5px;
+	font-family: 'Ubuntu', sans-serif;
+	&:hover {
+		text-decoration: none;
+		background-color: #333;
+		color: #fff;
+		transition: 0.5s;
+	}	
+}
+
+.links {
+
+	.btn-custom {
+		padding: 3px 10px;
+		font-weight: 300;
+	}
+
+}
+
+.book-links {
+
+	.btn-custom {
+		padding: 3px 10px;
+		font-weight: 300;
+		margin-top: 40px;	
+	}
+
+}
+
+ 
+
+
+/* Reviews styles */
+
+.reviews {
+	margin-top: 40px;
+
+	h1 {
+		margin-top: 0;
+		margin-bottom: 15px;
+		font-size: 2em;
+	}
+
+	.review {
+		border-bottom: 1px solid gainsboro;
+		margin-bottom: 15px;
+		padding-bottom: 10px;
+
+		.review-comment {
+			font-size: 1.05em;
+			line-height: 1.5;
+		}
+
+	}
+
+	.new-review {
+		padding-top: 8px;
+	}
+
+}
+
+
+
+
+
+
+.global-nav {
+  position: fixed;
+  right: -320px; /* これで隠れる */
+  top: 0;
+  width: 300px; /* スマホに収まるくらい */
+  height: 100vh;
+  padding-top: 40px;
+  background-color: #fff;
+  transition: all .6s;
+  z-index: 200;
+  overflow-y: auto; /* メニューが多くなったらスクロールできるように */
+}
+.hamburger {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px; /* クリックしやすいようにちゃんと幅を指定する */
+  height: 40px; /* クリックしやすいようにちゃんと高さを指定する */
+  cursor: pointer;
+  z-index: 300;
+}
+.global-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.global-nav__item {
+  text-align: center;
+  padding: 0 14px;
+}
+.global-nav__item a {
+  display: block;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  color: #111;
+}
+.global-nav__item a:hover {
+  background-color: #eee;
+}
+.hamburger__line {
+  position: absolute;
+  left: 11px;
+  width: 18px;
+  height: 1px;
+  background-color: #111;
+  transition: all .6s;
+}
+.hamburger__line--1 {
+  top: 14px;
+}
+.hamburger__line--2 {
+  top: 20px;
+}
+.hamburger__line--3 {
+  top: 26px;
+}
+.black-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: #000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .6s;
+  cursor: pointer;
+}
+/* 表示された時用のCSS */
+.nav-open .global-nav {
+  right: 0;
+}
+.nav-open .black-bg {
+  opacity: .8;
+  visibility: visible;
+}
+.nav-open .hamburger__line--1 {
+  transform: rotate(45deg);
+  top: 20px;
+}
+.nav-open .hamburger__line--2 {
+  width: 0;
+  left: 50%;
+}
+.nav-open .hamburger__line--3 {
+  transform: rotate(-45deg);
+  top: 20px;
+}

@@ -1,0 +1,5 @@
+current directory: /home/ec2-user/environment/testinformation.1/vendor/bundle/ruby/2.5.0/gems/childprocess-1.0.1/ext
+/home/ec2-user/.rvm/rubies/ruby-2.5.3/bin/ruby mkrf_conf.rb
+
+current directory: /home/ec2-user/environment/testinformation.1/vendor/bundle/ruby/2.5.0/gems/childprocess-1.0.1/ext
+/home/ec2-user/.rvm/rubies/ruby-2.5.3/bin/ruby -rrubygems /home/ec2-user/environment/testinformation.1/vendor/bundle/ruby/2.5.0/gems/rake-12.3.2/exe/rake RUBYARCHDIR\=/home/ec2-user/environment/testinformation.1/vendor/bundle/ruby/2.5.0/extensions/x86_64-linux/2.5.0/childprocess-1.0.1 RUBYLIBDIR\=/home/ec2-user/environment/testinformation.1/vendor/bundle/ruby/2.5.0/extensions/x86_64-linux/2.5.0/childprocess-1.0.1

@@ -1,0 +1,31 @@
+nav.header__nav
+  button.header__toggle
+    = image_tag 'ic_hamburger.svg', size:'38x38', class: 'header__show-menu-image'
+    = image_tag 'ic_cross.svg', size:'38x38', class: 'header__close-menu-image header__close-menu-image--hidden'
+  
+  = link_to 'TestInformation', root_path, class: 'header__test'
+   
+  ul.header__list.header__list--hidden
+    li.header__item
+      =link_to 'Usage', 'https://youtu.be/DarjUgCCTKg'
+    - if user_signed_in?
+      li.header__item
+        = link_to 'Post', new_information_path
+      li.header__item
+        = link_to 'Account', edit_user_registration_path
+      li.header__item
+        = link_to cart_path(@cart) do
+          span.icon.is-small
+            i.fa.fa-list
+          span
+            | List
+            = cart_count_over_one
+      li.header__item
+        = link_to "Log Out", destroy_user_session_path, method: :delete
+      li.header__item
+    - else
+      li.header__item
+        = link_to "Log In", new_user_session_path
+      li.header__item
+        = link_to "Sign up", new_user_registration_path
+   
