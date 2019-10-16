@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title
+      | testinformation
+    = csrf_meta_tags
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
+    meta[http-equiv="Content-Script-Type" content="text/javascript"]
+    = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application'
+  |  <body class="
+  = yield (:body_class)
+  | ", id="userLayout"> 
+  - if flash[:notice]
+    .notification.is-success.global-notification
+      p.notice
+        = notice
+  - if flash[:alert]
+    .notification.is-danger.global-notification
+      p.alert
+        = alert
+  .fixed-top.header
+    = render "shared/navbar"
+  = yield(:header)
+  .container
+    = yield

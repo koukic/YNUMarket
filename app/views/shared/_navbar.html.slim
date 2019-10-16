@@ -17,9 +17,9 @@ nav.header__nav
         = link_to cart_path(@cart) do
           span.icon.is-small
             i.fa.fa-list
-          span
+          span.header__item-list
             | List
-            = cart_count_over_one
+            = cart_count_over_one 
       li.header__item
         = link_to "Log Out", destroy_user_session_path, method: :delete
       li.header__item
@@ -28,4 +28,3 @@ nav.header__nav
         = link_to "Log In", new_user_session_path
       li.header__item
         = link_to "Sign up", new_user_registration_path
-   

@@ -1,0 +1,8 @@
+- content_for :header do
+  section.hero.is-warning
+    .hero-body
+      .container
+        h1.title
+          |  post an test information 
+.pv4
+  = render 'form', information: @information

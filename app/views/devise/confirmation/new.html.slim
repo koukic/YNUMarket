@@ -1,0 +1,14 @@
+section.section
+  .columns.is-centered
+    .column.is-4
+      h2.title.is-2
+        | Resend confirmation instructions
+      = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+        = f.error_notification
+        = f.full_error :confirmation_token
+        .field
+          .control
+            = f.input :email, required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }
+        .form-actions
+          = f.button :submit, "Resend confirmation instructions", class:'button is-warning'
+      = render "devise/shared/links"

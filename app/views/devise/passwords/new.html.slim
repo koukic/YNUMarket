@@ -1,0 +1,14 @@
+section.section
+  .container
+    .columns.is-centered
+      .column.is-4
+        h2.title.is-2
+          | Forgot your password?
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = f.error_notification
+          .field
+            .control
+              = f.input :email, required: true, autofocus: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }
+          = f.button :submit, "Send me reset password instructions", class:"button is-outlined"
+        br
+        = render "devise/shared/links"
