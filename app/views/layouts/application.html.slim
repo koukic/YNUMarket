@@ -1,20 +1,19 @@
 doctype html
 html
   head
-    title
-      | testinformation
-    = csrf_meta_tags
-    meta[name="viewport" content="width=device-width, initial-scale=1"]
-    meta[http-equiv="Content-Script-Type" content="text/javascript"]
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    script async src="https://www.googletagmanager.com/gtag/js?id=UA-141666340-2"
+    script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141666340-2"
     javascript:
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
       gtag('config', 'UA-141666340-2');
-
+    title
+      | testinformation
+    = csrf_meta_tags
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
+    meta[http-equiv="Content-Script-Type" content="text/javascript"]
     = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application'
