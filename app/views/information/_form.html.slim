@@ -5,7 +5,7 @@
       .columns
         .field.column.is-9
           .control
-            = f.input :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "Title(year,college,class)"
+            = f.input :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "Title(year,college,class)",placeholder: "2019　プログラミング大学　ミクロ経済学"
       .field
         .control
           = f.input :description, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class:"label" }
@@ -22,11 +22,9 @@
       .field
         .control
           label.label
-            | Add images(パソコンだとcommandを押しながら選択すると複数指定できます）
+            | Add images(パソコンだとcommandかctrを押しながら選択すると複数指定できます）
           .file
             label.file-label
-              - #= f.input :image, as: :file, input_html: { class:"file-input instrument-image" }, label: false, wrapper: false, :multiple => true
-              - #= f.input :image, as: :file, input_html: { class:"file-input instrument-image" }, label: false, wrapper: false, :multiple => true
               = f.file_field :image, multiple: true
             #result
       output#list
