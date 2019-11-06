@@ -59,7 +59,7 @@ class InformationController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def search
     @informations = Information.search(params[:q])
     render "index"
@@ -75,6 +75,4 @@ class InformationController < ApplicationController
     def information_params
       params.require(:information).permit(:condition, :title, :description, {image: [] })
     end
-    
-     
 end
