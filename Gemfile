@@ -76,6 +76,7 @@ gem 'mini_magick'
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
+  gem 'fog-aws', '~> 3.5', '>= 3.5.2'
 end
 
 gem 'pry-byebug', group: :development
@@ -88,4 +89,3 @@ gem 'slim'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'cloudinary'
-gem 'fog-aws', '~> 3.5', '>= 3.5.2'
