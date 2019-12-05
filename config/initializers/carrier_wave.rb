@@ -5,7 +5,6 @@ require 'carrierwave/storage/fog'
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.storage :fog
-    config.asset_host = 'https://s3-ap-northeast1.amazonaws/testinformation.1'
     config.fog_provider = 'fog/aws'
     config.fog_public = false
     config.fog_credentials = {
