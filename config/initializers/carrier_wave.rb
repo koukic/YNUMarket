@@ -15,5 +15,6 @@ if Rails.env.production?
       :aws_secret_access_key => ENV['S3_SECRET_KEY'],
     }
     config.fog_directory     =  ENV['S3_BUCKET']
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/testinformation.1'
   end
 end
