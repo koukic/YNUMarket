@@ -3,7 +3,7 @@
     .hero-body
       .container
         h1.title
-          |  Browse the latest test information 
+          |  Browse the latest test information
         = form_tag :search_information_index, method: :get, class: "search" do
           = text_field_tag "q", params[:q]
           = submit_tag "検索"
@@ -23,8 +23,8 @@
           h3.fw7.f4.title
             = link_to information.title, information, class: "bg-gradient-dark"
           p.has-text-gray.fg.pt1
-            | Post by 
+            | Post by
             = information.user.name
-          - if information_author(information)
+          - if information_author(information) or @user
             = link_to 'Edit', edit_information_path(information), class: "button is-small"
             = link_to 'Delete', information, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small"
