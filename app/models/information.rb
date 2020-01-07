@@ -11,9 +11,7 @@ class Information < ApplicationRecord
   validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum
   allowed."}
   CONDITION = %w{ New Fair Poor }
-  
-  
-  
+
   class << self
     def search(query)
       rel = order("id")
@@ -24,12 +22,12 @@ class Information < ApplicationRecord
       rel
     end
   end
-  
-   
 
-  
+
+
+
   private
-  
+
   def not_referenced_by_any_line_item
     unless line_items.empty?
       errors.add(:base, "Line items present")
