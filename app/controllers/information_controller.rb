@@ -5,7 +5,7 @@ class InformationController < ApplicationController
   # GET /information.json
   def index
      @informations = Information.order("id")
-     @user = User.find(1)
+     # @user = User.find(1)
   end
 
   # GET /information/1
