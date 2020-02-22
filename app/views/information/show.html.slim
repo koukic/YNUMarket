@@ -28,9 +28,9 @@ section.section.instrument-show
     .column.is-3.is-offset-1
       .bg-white.pa4.border-radius-3
         p.has-text-centered.mb4
-          | Post by 
+          | Post by
           = @information.user.name
-        = button_to 'Add to List', line_items_path(information_id: @information), class: 'button is-warning add-to-cart'
+          = button_to 'Add to List', line_items_path(information_id: @information), class: 'button is-warning add-to-cart'
       .reviews
         h1
           | Send thanks

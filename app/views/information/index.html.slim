@@ -27,6 +27,8 @@
           p.has-text-gray.fg.pt1
             | Post by
             = information.user.name
+          = link_to 'Edit', edit_information_path(information), class: "button is-small"
+          = link_to 'Delete', information, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small"
           / - if user_signed_in? && current_user == @user || information_author(information)
-            = link_to 'Edit', edit_information_path(information), class: "button is-small"
-            = link_to 'Delete', information, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small"
+          /   = link_to 'Edit', edit_information_path(information), class: "button is-small"
+          /   = link_to 'Delete', information, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small"

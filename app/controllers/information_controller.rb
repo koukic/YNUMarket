@@ -1,16 +1,18 @@
 class InformationController < ApplicationController
-  before_action :set_information, only: [:show, :edit, :update, :destroy]
+  before_action :set_information, only: %i[show, edit, update, destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /information
   # GET /information.json
   def index
      @informations = Information.order("id")
+     @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : nil)
      # @user = User.find(1)
   end
 
   # GET /information/1
   # GET /information/1.json
   def show
+    @information = Information.find(params[:id])
   end
 
   # GET /information/new
@@ -26,6 +28,7 @@ class InformationController < ApplicationController
   # POST /information.json
   def create
     @information = current_user.informations.build(information_params)
+    binding.pry
     respond_to do |format|
       if @information.save
         format.html { redirect_to @information, notice: 'Information was successfully created.' }
