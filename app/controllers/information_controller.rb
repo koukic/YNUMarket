@@ -28,7 +28,6 @@ class InformationController < ApplicationController
   # POST /information.json
   def create
     @information = current_user.informations.build(information_params)
-    binding.pry
     respond_to do |format|
       if @information.save
         format.html { redirect_to @information, notice: 'Information was successfully created.' }
