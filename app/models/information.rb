@@ -1,7 +1,9 @@
 class Information < ApplicationRecord
   before_destroy :not_referenced_by_any_line_item
-  mount_uploaders :image, ImageUploader
-  serialize :image, JSON
+  has_many :information_images, dependent: :destroy
+  accepts_nested_attributes_for :information_images
+  # mount_uploaders :image, ImageUploader
+  # serialize :image, JSON
   has_many :line_items
   belongs_to :user, optional: true
   has_many :reviews,dependent: :destroy
