@@ -18,6 +18,7 @@ class InformationController < ApplicationController
   # GET /information/new
   def new
     @information = current_user.informations.build
+    @information.information_images.build
   end
 
   # GET /information/1/edit
@@ -76,6 +77,6 @@ class InformationController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def information_params
-      params.require(:information).permit(:condition, :title, :description, images_attributes: {image: [] })
+      params.require(:information).permit(:condition, :title, :description, information_images_attributes: {image: [] })
     end
 end

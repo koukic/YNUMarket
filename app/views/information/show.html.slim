@@ -8,9 +8,9 @@ section.section.instrument-show
         - if @information.condition?
           li.inline-block.pr3
             = @information.condition
-      - if @information.image.present?
+      - if @information.information_images.present?
         .feature-image
-          - @information.image.each do |image|
+          - @information.information_images.each do |image|
             = image_tag(image.url)
       .content.pa4.mt3.bg-white.border-radius-3
         h3.subtitle.is-4
