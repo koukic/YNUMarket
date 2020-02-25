@@ -13,9 +13,9 @@
     - @informations.each do |information|
       .instrument.border-light
         .instrument-thumb
-          - if information.information_images.present?
-            .feature-image
-              = link_to image_tag(information.information_images.first.url(:thumb)), information
+          / - if information.information_images.present?
+          /   .feature-image
+          /     = link_to image_tag(information.information_images.first.url(:thumb)), information
           - if information.condition?
             .condition
               span.tag.is-dark

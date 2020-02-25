@@ -77,6 +77,8 @@ class InformationController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def information_params
-      params.require(:information).permit(:condition, :title, :description, information_images_attributes: {image: [] })
+      new_params = params.require(:information).permit(:condition, :title, :description, information_images_attributes: {image: []})
+      information_images_attributes = new_params.delete('information_images_attributes') || {}
+      new_params['information_images_attributes'] = information_images_attributes['image']&.map&.with_index{|image, index| result = {}; result["#{index}"] = image; result} || []
     end
 end
