@@ -29,6 +29,7 @@ class InformationController < ApplicationController
   # POST /information.json
   def create
     @information = current_user.informations.build(information_params)
+    images = information_params.delete('images')
     respond_to do |format|
       if @information.save
         format.html { redirect_to @information, notice: 'Information was successfully created.' }
@@ -77,8 +78,6 @@ class InformationController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def information_params
-      new_params = params.require(:information).permit(:condition, :title, :description, information_images_attributes: {image: []})
-      information_images_attributes = new_params.delete('information_images_attributes') || {}
-      new_params['information_images_attributes'] = information_images_attributes['image']&.map&.with_index{|image, index| result = {}; result["#{index}"] = image; result} || []
+      params.require(:information).permit(:condition, :title, :description, images: [])
     end
 end

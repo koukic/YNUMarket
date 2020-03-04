@@ -25,8 +25,7 @@
             | Add images(パソコンだとcommandかctrを押しながら選択すると複数指定できます）
           .file
             label.file-label
-              = f.fields_for :information_images do |c|
-                = c.file_field :image, multiple: true
+              input type="file" name="information[images][]" multiple="multiple"
             #result
       output#list
       hr
