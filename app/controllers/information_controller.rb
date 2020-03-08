@@ -8,28 +8,28 @@ class InformationController < ApplicationController
      @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : nil)
      # @user = User.find(1)
   end
-
   # GET /information/1
   # GET /information/1.json
   def show
     @information = Information.find(params[:id])
   end
-
   # GET /information/new
   def new
     @information = current_user.informations.build
     @information.information_images.build
   end
-
   # GET /information/1/edit
   def edit
   end
-
   # POST /information
   # POST /information.json
   def create
-    @information = current_user.informations.build(information_params)
-    images = information_params.delete('images')
+    temp_params = information_params
+    images = temp_params.delete(:images)
+    @information = current_user.informations.build(temp_params)
+    images.each do |image|
+      @information.information_images.new(image: image)
+    end
     respond_to do |format|
       if @information.save
         format.html { redirect_to @information, notice: 'Information was successfully created.' }
@@ -40,7 +40,6 @@ class InformationController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /information/1
   # PATCH/PUT /information/1.json
   def update
@@ -54,7 +53,6 @@ class InformationController < ApplicationController
       end
     end
   end
-
   # DELETE /information/1
   # DELETE /information/1.json
   def destroy
@@ -64,20 +62,17 @@ class InformationController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   def search
     @informations = Information.search(params[:q])
     render "index"
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_information
       @information = Information.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def information_params
-      params.require(:information).permit(:condition, :title, :description, :images)
+      params.require(:information).permit(:condition, :title, :description, images: [])
     end
 end

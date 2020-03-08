@@ -1,4 +1,4 @@
 class InformationImage < ApplicationRecord
   belongs_to :information
-  mount_uploaders :image, ImageUploader
+  mount_uploaders :images, ImageUploader
 end
