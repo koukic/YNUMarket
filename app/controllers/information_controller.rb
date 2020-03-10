@@ -20,6 +20,7 @@ class InformationController < ApplicationController
   end
   # GET /information/1/edit
   def edit
+    binding.pry
   end
   # POST /information
   # POST /information.json

@@ -3,7 +3,7 @@
     = line_item.quantity
   .column.is-2
     figure.is-128x128.image
-      = link_to image_tag(line_item.information.image.first.url(:thumb)), line_item.information
+      = link_to image_tag(line_item.information.information_images.first.image.url(:thumb)), line_item.information
   .column.is-9
     strong
       = link_to line_item.information.title, line_item.information
