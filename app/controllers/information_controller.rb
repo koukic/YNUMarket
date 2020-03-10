@@ -1,5 +1,5 @@
 class InformationController < ApplicationController
-  before_action :set_information, only: %i[show, edit, update, destroy]
+  before_action :set_information, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /information
   # GET /information.json
@@ -20,7 +20,7 @@ class InformationController < ApplicationController
   end
   # GET /information/1/edit
   def edit
-    binding.pry
+
   end
   # POST /information
   # POST /information.json
