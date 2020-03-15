@@ -6,9 +6,19 @@
         .field.column.is-9
           .control
             = f.input :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "Title(year,college,class)",placeholder: "2019　プログラミング大学　ミクロ経済学"
+
       .field
         .control
-          = f.input :description, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class:"label" }
+          label.label
+            | description
+
+          = f.text_area :description, required: true, class: "textarea"
+
+
+      .field
+        .control
+          = f.input :price, required: true, input_html: { class: "input", maxlength: 7 }, wrapper: false, label_html: { class:"label" }
+
       .columns
         .field.column.is-4
           .control
@@ -16,7 +26,7 @@
               | Condition
             .control.has-icons-left
               span.select
-                = f.input_field :condition, collection: Information::CONDITION, prompt: "Select condition"
+                = f.input_field :tag_list, collection: Information::CONDITION, prompt: "Select condition"
               span.icon.is-small.is-left
                 i.fa.fa-paint-brush
       .field

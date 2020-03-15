@@ -2,7 +2,7 @@
   .column.is-1
     = line_item.quantity
   .column.is-2
-    figure.is-128x128.image
+    figure.is-128x128
       = link_to image_tag(line_item.information.information_images.first.image.url(:thumb)), line_item.information
   .column.is-9
     strong
