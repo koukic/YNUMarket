@@ -1,0 +1,37 @@
+version: "2"
+volumes:
+  postgres:
+services:
+  #
+  # メインコンテナ
+  #
+  app:
+    build: .
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:cached
+      - postgres:/var/run/postgresql
+    ports:
+      - "3011:3000"
+      - "3039:3030"
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+      PORT: 3000
+      RAILS_LOG_TO_STDOUT: 'true'
+      RAILS_MAX_THREADS: 2
+    command: bundle exec puma -C config/puma.rb
+
+  #
+  # PostgreSQLのコンテナ
+  #
+  postgres:
+    image: postgres:9.6.8
+    environment:
+      - "POSTGRES_USER=root"
+    volumes:
+      - postgres:/var/run/postgresql
+      - .:/app:cached
+    ports:
+      - "127.0.0.1:5434:5432"

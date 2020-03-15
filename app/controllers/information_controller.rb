@@ -4,6 +4,7 @@ class InformationController < ApplicationController
   # GET /information
   # GET /information.json
   def index
+
      @informations = Information.order("id")
      @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : nil)
      # @user = User.find(1)
