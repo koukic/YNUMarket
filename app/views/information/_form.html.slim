@@ -5,34 +5,34 @@
       .columns
         .field.column.is-9
           .control
-            = f.input :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "Title(year,college,class)",placeholder: "2019　プログラミング大学　ミクロ経済学"
+            = f.input :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "タイトル",placeholder: "商品名orサービス名"
 
       .field
         .control
           label.label
-            | description
+            | *説明
 
           = f.text_area :description, required: true, class: "textarea"
 
 
       .field
         .control
-          = f.input :price, required: true, input_html: { class: "input", maxlength: 7 }, wrapper: false, label_html: { class:"label" }
+          = f.input :price, required: true, input_html: { class: "input", maxlength: 7 }, wrapper: false, label_html: { class:"label" }, label: "値段"
 
       .columns
         .field.column.is-4
           .control
             label.label
-              | Condition
+              | *タグの選択
             .control.has-icons-left
               span.select
-                = f.input_field :tag_list, collection: Information::CONDITION, prompt: "Select condition"
+                = f.input_field :tag_list, collection: Information::CONDITION.map { |key, value| [value, key] }, prompt: "Select condition"
               span.icon.is-small.is-left
                 i.fa.fa-paint-brush
       .field
         .control
           label.label
-            | Add images(パソコンだとcommandかctrを押しながら選択すると複数指定できます）
+            | *画像の追加(パソコンだとcommandかctrを押しながら選択すると複数指定できます）
           .file
             label.file-label
               input type="file" name="information[images][]" multiple="multiple"
@@ -41,5 +41,5 @@
       hr
       .field.is-grouped
         .control
-          = f.button :submit, class: 'button is-warning'
-          = link_to 'Cancel', information_index_path, class:'button is-light'
+          = f.button :submit, '投稿する',class: 'button is-warning'
+          = link_to '取り消す', information_index_path, class:'button is-light'

@@ -3,7 +3,7 @@ section.section
     .columns.is-centered
       .column.is-4
         h2.title.is-2
-          | Forgot your password?
+          | パスワードを忘れてしまった方
         = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
           = f.error_notification
           .field

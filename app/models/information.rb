@@ -14,7 +14,7 @@ class Information < ApplicationRecord
   allowed."}
   validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum
   allowed."}
-  CONDITION = %w{ New Fair Poor }
+  CONDITION = {"new" => 'new', "fair"=> 'fair'}
 
   class << self
     def search(query)
