@@ -1,18 +1,38 @@
-h1
-  | DM
-
-- if @messages.present?
-  - @messages.each do |m|
-    strong
-      = m.content
-    hr
-- else
-  h3.text-center
-    | メッセージはまだありません
+/ h1
+/   | DM
+/
+#direct_messages data-room_id="<%= @room.id %>"
+  - if @messages.present?
+    - @messages.each do |m|
+      strong
+        = m.content
+      hr
+  - else
+    h3.text-center
+      | メッセージはまだありません
 
 = form_for @message do |f|
-  = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70
+  = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, id: "chat-input"
   = f.hidden_field :room_id, value: @room.id
   br
   = f.submit "投稿する"
 = link_to "一覧に戻る", root_path
+
+/ h1
+/   = @room.name
+/
+/ h1
+/   | Chat room
+/ form
+/   label
+/     | Say something:
+/   br
+/   input#chat-input[type="text" data-behavior="room_speaker"]
+/ |  <div id="direct_messages" data-room_id="
+/ = @room.id
+/ | ">
+/ - if @messages.present?
+/   - @messages.each do |m|
+/     strong
+/       = m.content
+/     hr
