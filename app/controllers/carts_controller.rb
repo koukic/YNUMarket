@@ -11,7 +11,30 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-     
+    @line_items = @cart.line_items
+    @line_items.each do |item|
+      @user = item.information.user
+    end
+
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   # GET /carts/new
@@ -74,7 +97,7 @@ class CartsController < ApplicationController
     def cart_params
       params.fetch(:cart, {})
     end
-    
+
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to root_path, notice: "That cart doesn't exist"

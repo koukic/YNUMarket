@@ -1,0 +1,18 @@
+h1
+  | DM
+
+- if @messages.present?
+  - @messages.each do |m|
+    strong
+      = m.content
+    hr
+- else
+  h3.text-center
+    | メッセージはまだありません
+
+= form_for @message do |f|
+  = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70
+  = f.hidden_field :room_id, value: @room.id
+  br
+  = f.submit "投稿する"
+= link_to "一覧に戻る", root_path
