@@ -12,14 +12,31 @@
             p.control
               = submit_tag "検索", class: 'button is-default'
 
-        .select
-          select
-            option
-              | タグ検索
-            - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
-              option
-                = link_to tag, information_index_path(tag_name: tag), class: "text-white"
+        .dropdown
+          .dropdown-trigger
+            button.button[aria-haspopup="true" aria-controls="dropdown-menu2"]
+              span
+                | タグ検索
+              span.icon.is-small
+                i.fas.fa-angle-down
+          #dropdown-menu2.dropdown-menu[role="menu"]
+            .dropdown-content
+              - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
+                .dropdown-item
+                  = link_to tag, information_index_path(tag_name: tag)
+                hr.dropdown-divider
 
+        / nav.dropdown__nav
+        /   button.dropdown__toggle
+        /     = image_tag 'ic_hamburger.svg', size:'38x38', class: 'dropdown__show-menu-image'
+        /     = image_tag 'ic_cross.svg', size:'38x38', class: 'dropdown__close-menu-image dropdown__close-menu-image--hidden'
+        /
+        /   = link_to 'TestInformation', root_path, class: 'dropdown__test'
+        /
+        /   ul.dropdown__list.dropdown__list--hidden
+        /     - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
+        /       li.dropdown__item
+        /         = link_to tag, information_index_path(tag_name: tag)
 
 .instrument-index-grid.pt4
   - if @informations.present?

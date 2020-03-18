@@ -26,7 +26,6 @@ nav.header__nav
                 = cart_count_over_one
       li.header__item
         = link_to "ログアウト", destroy_user_session_path, method: :delete
-      li.header__item
     - else
       li.header__item
         = link_to "ログイン", new_user_session_path

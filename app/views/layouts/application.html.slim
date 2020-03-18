@@ -7,19 +7,21 @@ html
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
+
       gtag('config', 'UA-141666340-2');
     title
       | testinformation
     = csrf_meta_tags
     meta[name="viewport" content="width=device-width, initial-scale=1"]
     meta[http-equiv="Content-Script-Type" content="text/javascript"]
+    script src="https://kit.fontawesome.com/837b05d657.js" crossorigin="anonymous"
     = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
     = javascript_include_tag 'application'
   |  <body class="
   = yield (:body_class)
-  | ", id="userLayout"> 
+  | ", id="userLayout">
   - if flash[:notice]
     .notification.is-success.global-notification
       p.notice
