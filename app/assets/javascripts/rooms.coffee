@@ -8,10 +8,10 @@ document.addEventListener 'turbolinks:load', ->
     disconnected: ->
 
     received: (data) ->
-      $('#direct_messages').append data['direct_message']
+      $('#direct_messages').append data['message']
 
     speak: (direct_message) ->
-      @perform 'speak', direct_message: direct_message
+      @perform 'speak', message: message
 
   $('#chat-input').on 'keypress', (event) ->
     if event.keyCode is 13

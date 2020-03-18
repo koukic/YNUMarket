@@ -17,12 +17,12 @@
   - if @user.id == current_user.id
 
   - else
-    - if @isRoom == true
-      = link_to 'チャットへ', @roomId
-    - else
-      = form_for @room do |f|
-        = fields_for @entry do |e|
-          = e.hidden_field :user_id, value: @user.id
-        = f.submit 'チャットを始める'
+    / - if @isRoom == true
+    /   = link_to 'チャットへ', @roomId
+    / - else
+      / = form_for @room do |f|
+      /   = fields_for @entry do |e|
+      /     = e.hidden_field :user_id, value: @user.id
+      /   = f.submit 'チャットを始める'
 
 |  <hr/ >
