@@ -1,10 +1,12 @@
 class Information < ApplicationRecord
+  acts_as_taggable
+  paginates_per 10
   before_destroy :not_referenced_by_any_line_item
   has_many :information_images, dependent: :destroy
   accepts_nested_attributes_for :information_images
   # mount_uploaders :image, ImageUploader
   # serialize :image, JSON
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
   belongs_to :user, optional: true
   has_many :reviews,dependent: :destroy
   validates :title, presence: true
@@ -12,7 +14,7 @@ class Information < ApplicationRecord
   allowed."}
   validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum
   allowed."}
-  CONDITION = %w{ New Fair Poor }
+  CONDITION = {"new" => 'new', "fair"=> 'fair'}
 
   class << self
     def search(query)

@@ -7,27 +7,27 @@ nav.header__nav
 
   ul.header__list.header__list--hidden
     li.header__item
-      = link_to 'Home', root_path
+      = link_to 'トップページへ', root_path
     li.header__item
-      =link_to 'Usage', 'https://youtu.be/DarjUgCCTKg'
+      =link_to '使い方', 'https://youtu.be/DarjUgCCTKg'
     - if user_signed_in?
       li.header__item
-        = link_to 'Post', new_information_path
+        = link_to '投稿をする', new_information_path
       li.header__item
-        = link_to 'Account', edit_user_registration_path
+        = link_to 'アカウント', edit_user_registration_path
+      - if @cart
+
+        li.header__item
+            = link_to cart_path(@cart) do
+              span.icon.is-small
+                i.fa.fa-list
+              span.header__item-list
+                | リスト
+                = cart_count_over_one
       li.header__item
-        - if @cart
-          = link_to cart_path(@cart) do
-            span.icon.is-small
-              i.fa.fa-list
-            span.header__item-list
-              | List
-              = cart_count_over_one
-      li.header__item
-        = link_to "Log Out", destroy_user_session_path, method: :delete
-      li.header__item
+        = link_to "ログアウト", destroy_user_session_path, method: :delete
     - else
       li.header__item
-        = link_to "Log In", new_user_session_path
+        = link_to "ログイン", new_user_session_path
       li.header__item
-        = link_to "Sign up", new_user_registration_path
+        = link_to "新規登録", new_user_registration_path

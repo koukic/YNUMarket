@@ -5,9 +5,9 @@ section.section.instrument-show
       h1.title.is-2
         = @information.title
       ul.pv1
-        - if @information.condition?
-          li.inline-block.pr3
-            = @information.condition
+        / - if @information.condition?
+        /   li.inline-block.pr3
+        /     = @information.condition
       - if @information.information_images.present?
         .feature-image
           - @information.information_images.each do |information_image|
@@ -20,23 +20,25 @@ section.section.instrument-show
         h3.subtitle.is-4.pt5
           | Product Specs
         table.table.is-narrow
-          - if @information.condition
+          - if @information.price
             tr
               td.has-text-weight-bold
-                | Condition:
+                | 値段:
               td
-                = @information.condition
+                = @information.price
+
+        /   - if @information.condition
+        /     tr
+        /       td.has-text-weight-bold
+        /         | Condition:
+        /       td
+        /         = @information.condition
     .column.is-3.is-offset-1
       .bg-white.pa4.border-radius-3
         p.has-text-centered.mb4
-          | Post by
+          | 投稿者
           = @information.user.name
-          = button_to 'Add to List', line_items_path(information_id: @information), class: 'button is-warning add-to-cart'
-      .reviews
-        h1
-          | Send thanks
-        = render @information.reviews
-        div
-          = link_to "Say thank you", new_information_review_path(@information), class: "btn-custom"
-  - if information_author(@information)
-    = link_to 'Edit', edit_information_path(@information), class: 'button'
+          - if user_signed_in?
+            = button_to 'リストに追加する', line_items_path(information_id: @information), class: 'button is-warning add-to-cart'
+          - else
+            = button_to 'リストに追加する',  new_user_session_path, class: 'button is-warning add-to-cart'

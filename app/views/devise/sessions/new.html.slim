@@ -3,17 +3,17 @@ section.section
     .columns.is-centered
       .column.is-4
         h2.title.is-2
-          | Log in
+          | ログイン
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .field
             .control
-              = f.input :email, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }
+              = f.input :email, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }, label: "メールアドレス"
           .field
             .control
-              = f.input :password, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }
+              = f.input :password, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }, label: "パスワード"
           .field
             .control
               = f.input :remember_me, wrapper: false, as: :boolean if devise_mapping.rememberable?
-          = f.button :submit, "Log in", class:"button is-outlined is-medium"
+          = f.button :submit, "ログインする", class:"button is-outlined is-medium"
         br
         = render "devise/shared/links"

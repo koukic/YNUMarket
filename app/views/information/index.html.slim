@@ -5,9 +5,38 @@
         h1.title
           |  Browse the latest test information
         = form_tag :search_information_index, method: :get, class: "search" do
-          .input-group
-            = text_field_tag "q", params[:q], placeholder:"キーワード検索", class: "form-control"
-            = submit_tag "検索"
+          .field.is-grouped
+            p.control.is-expanded
+              = text_field_tag "q",params[:q], placeholder:"キーワード検索",class: 'input'
+
+            p.control
+              = submit_tag "検索", class: 'button is-default'
+
+        .dropdown
+          .dropdown-trigger
+            button.button[aria-haspopup="true" aria-controls="dropdown-menu2"]
+              span
+                | タグ検索
+              span.icon.is-small
+                i.fas.fa-angle-down
+          #dropdown-menu2.dropdown-menu[role="menu"]
+            .dropdown-content
+              - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
+                .dropdown-item
+                  = link_to tag, information_index_path(tag_name: tag)
+                hr.dropdown-divider
+
+        / nav.dropdown__nav
+        /   button.dropdown__toggle
+        /     = image_tag 'ic_hamburger.svg', size:'38x38', class: 'dropdown__show-menu-image'
+        /     = image_tag 'ic_cross.svg', size:'38x38', class: 'dropdown__close-menu-image dropdown__close-menu-image--hidden'
+        /
+        /   = link_to 'TestInformation', root_path, class: 'dropdown__test'
+        /
+        /   ul.dropdown__list.dropdown__list--hidden
+        /     - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
+        /       li.dropdown__item
+        /         = link_to tag, information_index_path(tag_name: tag)
 
 .instrument-index-grid.pt4
   - if @informations.present?
@@ -17,17 +46,23 @@
           - if information.information_images.present?
             .feature-image
               = link_to image_tag(information.information_images.first.image.url(:thumb)), information
-          - if information.condition?
-            .condition
-              span.tag.is-dark
-                = information.condition
+          / - if information.condition?
+          /   .condition
+          /     span.tag.is-dark
+          /       = information.condition
         .pa3
           h3.fw7.f4.title
             = link_to information.title, information, class: "bg-gradient-dark"
 
           p.has-text-gray.fg.pt1
-            | Post by
+            | 投稿者
             = information.user.name
+          p.f3.fw6.has-text-right.pt2.price
+            = number_to_currency(information.price, unit: "￥", precision: 0)
+
           - if user_signed_in? && current_user == @user || information_author(information)
             / = link_to 'Edit', edit_information_path(information), class: "button is-small"
-            = link_to 'Delete', information, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small"
+            = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
+
+
+= paginate @informations,window: 2

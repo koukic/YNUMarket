@@ -15,3 +15,11 @@ $(function(){
     });
 });
 
+$(document).on('turbolinks:load', function(){
+  $('.dropdown').on('click', function() {
+    $('.dropdown').toggleClass('is-active');
+  });
+  $('.dropdown-item a').on('click', function() {
+    $('.dropdown').toggleClass('is-active');
+  });
+})

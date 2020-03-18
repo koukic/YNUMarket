@@ -4,10 +4,13 @@ class InformationController < ApplicationController
   # GET /information
   # GET /information.json
   def index
+    @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : nil)
+    if params[:tag_name]
+      @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
+    else
+      @informations = Information.order(:id).page params[:page]
+    end
 
-     @informations = Information.order("id")
-     @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : nil)
-     # @user = User.find(1)
   end
   # GET /information/1
   # GET /information/1.json
@@ -66,6 +69,7 @@ class InformationController < ApplicationController
   end
   def search
     @informations = Information.search(params[:q])
+    @informations = Information.page(params[:page])
     render "index"
   end
   private
@@ -75,6 +79,6 @@ class InformationController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def information_params
-      params.require(:information).permit(:condition, :title, :description, images: [])
+      params.require(:information).permit(:condition, :title, :description, :tag_list, :price, images: [])
     end
 end

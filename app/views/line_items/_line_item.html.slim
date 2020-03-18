@@ -1,8 +1,6 @@
 .columns.align-items-center
-  .column.is-1
-    = line_item.quantity
   .column.is-2
-    figure.is-128x128.image
+    figure.is-128x128
       = link_to image_tag(line_item.information.information_images.first.image.url(:thumb)), line_item.information
   .column.is-9
     strong
@@ -10,6 +8,8 @@
     .columns.align-items-center
       .content.column.is-9
         = truncate(line_item.information.description, length: 140)
+      .column.is-3.has-text-right
+        = number_to_currency(line_item.information.price, unit: "￥", precision: 0)
 .has-text-right
-  = link_to 'Remove Item', line_item, method: :delete, data: { confirm:" Are you sure? "}, class: "button is-small mb-4"
+  = link_to '削除する', line_item, method: :delete, data: { confirm:" Are you sure? "}, class: "button is-small mb-4"
 |  <hr/ >
