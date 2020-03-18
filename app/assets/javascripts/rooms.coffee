@@ -10,7 +10,7 @@ document.addEventListener 'turbolinks:load', ->
     received: (data) ->
       $('#direct_messages').append data['message']
 
-    speak: (direct_message) ->
+    speak: (message) ->
       @perform 'speak', message: message
 
   $('#chat-input').on 'keypress', (event) ->
