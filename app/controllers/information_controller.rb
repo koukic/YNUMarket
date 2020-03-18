@@ -4,7 +4,10 @@ class InformationController < ApplicationController
   # GET /information
   # GET /information.json
   def index
+    pp session[:cart_id]
+    binding.pry
     @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : nil)
+    pp @cart
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
     else

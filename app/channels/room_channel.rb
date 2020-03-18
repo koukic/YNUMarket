@@ -8,7 +8,7 @@ class RoomChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def speak
+  def speak(data)
      Message.create! message: data['message'], user_id: current_user.id, room_id: params['room']
   end
 end
