@@ -58,8 +58,6 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
     t.index ["information_id"], name: "index_line_items_on_information_id"
   end
 
-<<<<<<< HEAD
-=======
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "room_id"
@@ -76,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
     t.datetime "updated_at", null: false
   end
 
->>>>>>> :+1:Add room
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -117,11 +115,10 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-<<<<<<< HEAD
   add_foreign_key "information_images", "information"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "information"
-=======
+
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
   add_foreign_key "information_images", "information"
@@ -129,6 +126,6 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
   add_foreign_key "line_items", "information"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
->>>>>>> :+1:Add room
+
   add_foreign_key "taggings", "tags"
 end
