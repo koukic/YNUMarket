@@ -1,13 +1,11 @@
 class InformationController < ApplicationController
+  # before_action :after_sign_in_path_for, only: %i[index]
   before_action :set_information, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /information
   # GET /information.json
   def index
-    pp session[:cart_id]
-    binding.pry
     @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : nil)
-    pp @cart
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
     else
@@ -75,6 +73,19 @@ class InformationController < ApplicationController
     @informations = Information.page(params[:page])
     render "index"
   end
+
+  def after_sign_in_path_for
+    if session[:cart_id].present?
+      @cart = Cart.find(session[:cart_id])
+      root_path
+    else
+      @cart = Cart.create
+      session[:cart_id] = @cart.id
+      root_path
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_information
