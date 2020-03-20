@@ -11,11 +11,21 @@
     h3.text-center
       | メッセージはまだありません
 
-= form_for @message do |f|
-  = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, id: "chat-input"
-  = f.hidden_field :room_id, value: @room.id
-  br
-  = f.submit "投稿する"
+/ = form_for @message do |f|
+/   = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, id: "chat-input"
+/   = f.hidden_field :room_id, value: @room.id
+/   br
+/   = f.submit "投稿する"
+
+/ form
+/   label
+/     | Say something:
+/   br
+/   input#chat-input[type="text" data-behavior="room_speaker"]
+
+form
+  input type="text" data-behavior="room_speak"
+
 = link_to "一覧に戻る", root_path
 
 / h1

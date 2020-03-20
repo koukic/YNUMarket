@@ -5,7 +5,6 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @messages = @room.messages
-      @message = Message.new
       @entries = @room.entries
     else
       redirect_back(fallback_location: root_path)
