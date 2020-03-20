@@ -20,10 +20,10 @@ document.addEventListener 'turbolinks:load', ->
       # returnキーでデータを受け取る処理
     $(document).on 'keypress', '[data-behavior~=room_speak]', (event) ->
     if event.keyCode is 13
+      event.preventDefault()
       # コンソールで接続確認で使ったコード
       App.room.speak event.target.value
       event.target.value = ''
-      event.preventDefault()
 
 # document.addEventListener 'turbolinks:load', ->
 #   App.room = App.cable.subscriptions.create { channel: "RoomChannel", room: $('#direct_messages').data('room_id') },

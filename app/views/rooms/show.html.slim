@@ -1,7 +1,7 @@
 / h1
 /   | DM
 /
-#direct_messages data-room_id="<%= @room.id %>"
+#direct_messages data-room_id=@room.id
   = render @messages
 
 / = form_for @message do |f|
