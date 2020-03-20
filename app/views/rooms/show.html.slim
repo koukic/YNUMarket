@@ -2,14 +2,7 @@
 /   | DM
 /
 #direct_messages data-room_id="<%= @room.id %>"
-  - if @messages.present?
-    - @messages.each do |m|
-      strong
-        = m.content
-      hr
-  - else
-    h3.text-center
-      | メッセージはまだありません
+  = render @messages
 
 / = form_for @message do |f|
 /   = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, id: "chat-input"
