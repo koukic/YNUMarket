@@ -118,14 +118,6 @@
     cursor: pointer;/*マウスポインタを当てた時に、カーソルが指の形になる*/
 }
 
-$pc-width: 1172px;
-  $color-white: white;
-  $color-green: rgb(3, 170, 148);
-  @mixin media-pc {
-    @media (min-width: $pc-width) {
-      @content;
-    }
-  }
 
 .quote-footer {
     position: sticky;
@@ -134,11 +126,4 @@ $pc-width: 1172px;
     width: 100%;
     padding: 0 10px;
     z-index: 200;
-
-  }
-
-  @include media-pc() {
-    .quote-footer {
-      display: none;
-    }
-  }
+}

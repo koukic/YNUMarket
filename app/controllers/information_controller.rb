@@ -1,5 +1,4 @@
 class InformationController < ApplicationController
-  # before_action :after_sign_in_path_for, only: %i[index]
   before_action :set_information, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /information
@@ -73,18 +72,6 @@ class InformationController < ApplicationController
     @informations = Information.page(params[:page])
     render "index"
   end
-
-  def after_sign_in_path_for
-    if session[:cart_id].present?
-      @cart = Cart.find(session[:cart_id])
-      root_path
-    else
-      @cart = Cart.create
-      session[:cart_id] = @cart.id
-      root_path
-    end
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
