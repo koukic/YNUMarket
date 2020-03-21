@@ -7,7 +7,11 @@
 / #direct_messages data-room_id=@room.id
 /   = render @messages
 
-form
-  input#chat-input[type="text" data-behavior="room_speaker"]
+/ input#chat-input[type="text" data-behavior="room_speaker"]
+
+.quote-footer
+  textarea#bms_send_message[type="text" data-behavior="room_speaker"]
+  .chat_submit#bms_send_btn
+    | 送信
 
 = link_to "一覧に戻る", root_path

@@ -12,9 +12,15 @@ document.addEventListener 'turbolinks:load', ->
       @perform 'speak', message: message
 
       # returnキーでデータを受け取る処理
-    $('#chat-input').on 'keypress', (event) ->
-      if event.keyCode is 13
-        event.preventDefault()
-        # コンソールで接続確認で使ったコード
-        App.room.speak event.target.value
-        event.target.value = ''
+    $('#bms_send_message').on 'keypress', (event) ->
+      if event.ctrlKey
+        if event.keyCode is 13
+          event.preventDefault()
+          # コンソールで接続確認で使ったコード
+          App.room.speak event.target.value
+          event.target.value = ''
+
+    $(document).on 'click', '.chat_submit', ->
+      event.preventDefault()
+      App.room.speak $('#bms_send_message').val()
+      $('#bms_send_message').val('')
