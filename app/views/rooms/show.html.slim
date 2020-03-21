@@ -1,11 +1,11 @@
-/ #direct_messages data-room_id=@room.id
-/   #bms_messages_container
-/     #bms_messages
-/       .bms_message
-/         = render @messages
-
 #direct_messages data-room_id=@room.id
-  = render @messages
+  #bms_messages_container
+    #bms_messages
+      .bms_message
+        = render @messages
+
+/ #direct_messages data-room_id=@room.id
+/   = render @messages
 
 form
   input#chat-input[type="text" data-behavior="room_speaker"]
