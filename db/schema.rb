@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 2020_03_17_020028) do
+ActiveRecord::Schema.define(version: 2020_03_22_133453) do
 
 
   # These are extensions that must be enabled in order to support this database
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_entries_on_room_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -74,7 +84,10 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> :+1:Add has_one
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -115,9 +128,12 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "entries", "rooms"
+  add_foreign_key "entries", "users"
   add_foreign_key "information_images", "information"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "information"
+<<<<<<< HEAD
 
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
@@ -127,5 +143,9 @@ ActiveRecord::Schema.define(version: 2020_03_17_020028) do
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
 
+=======
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
+>>>>>>> :+1:Add has_one
   add_foreign_key "taggings", "tags"
 end
