@@ -22,5 +22,5 @@ document.addEventListener 'turbolinks:load', ->
 
     $(document).on 'click', '.chat_submit', ->
       event.preventDefault()
-      App.room.speak $('#bms_send_message').val()
+      App.room.speak $('#bms_send_message').val().replace(/\n/g,"<br>").replace(/\r/g,"")
       $('#bms_send_message').val('')

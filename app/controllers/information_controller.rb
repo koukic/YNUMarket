@@ -68,8 +68,7 @@ class InformationController < ApplicationController
     end
   end
   def search
-    @informations = Information.search(params[:q])
-    @informations = Information.page(params[:page])
+    @informations = Information.search(params[:q]).page(params[:page])
     render "index"
   end
 
