@@ -1,22 +1,25 @@
-strong
-  - if message.user.id == operated_user.id
-    .bms_right
-      .bms_message_box
-        .bms_message_content
-          .bms_message_text
-            = message.content
-      .created_at
-        = message.created_at.to_s(:datetime_jp)
-    .bms_clear
-  - else
-    .bms_left
-      .bms_message_box
-        .bms_message_content
-          .bms_message_text
-            = message.content
-      .created_at
-        = message.created_at.to_s(:datetime_jp)
-    .bms_clear
+#bms_messages_container
+  #bms_messages
+    .bms_message
+      strong
+        - if message.user.id == operated_user.id
+          .bms_right
+            .bms_message_box
+              .bms_message_content
+                .bms_message_text
+                  = message.content
+            .created_at
+              = message.created_at.to_s(:datetime_jp)
+          .bms_clear
+        - else
+          .bms_left
+            .bms_message_box
+              .bms_message_content
+                .bms_message_text
+                  = message.content
+            .created_at
+              = message.created_at.to_s(:datetime_jp)
+          .bms_clear
 
 / strong
 /   = message.content

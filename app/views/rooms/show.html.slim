@@ -1,8 +1,5 @@
 #direct_messages data-room_id=@room.id
-  #bms_messages_container
-    #bms_messages
-      .bms_message
-        = render @messages, operated_user: current_user
+  = render @messages, operated_user: current_user
 
 / #direct_messages data-room_id=@room.id
 /   = render @messages

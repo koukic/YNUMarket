@@ -5,8 +5,9 @@ document.addEventListener 'turbolinks:load', ->
     disconnected: ->
 
     received: (data) ->
-      $('#direct_messages').append data['message']
-      alert data['message']
+      @data = data['message'].replace(/\n/g,"<br/>").replace(/\r/g,"")
+      $('#direct_messages').append @data
+      alert @data
 
     speak: (message) ->
       @perform 'speak', message: message
@@ -22,5 +23,5 @@ document.addEventListener 'turbolinks:load', ->
 
     $(document).on 'click', '.chat_submit', ->
       event.preventDefault()
-      App.room.speak $('#bms_send_message').val().replace(/\n/g,"<br>").replace(/\r/g,"")
+      App.room.speak $('#bms_send_message').val()
       $('#bms_send_message').val('')
