@@ -14,15 +14,13 @@
 
   = link_to '削除する', line_item, method: :delete, data: { confirm:" Are you sure? "}, class: "button is-small mb-4"
 
-  - binding.pry
-
   - unless user.id == current_user.id
     - if isRoom == true
-       = link_to 'チャットへ', roomId
-    / - else
-    /   = form_for room do |f|
-    /     = fields_for entry do |e|
-    /       = e.hidden_field :user_id, value: user.id
-    /     = f.submit 'チャットを始める'
+       = link_to 'チャットへ', room_path(@roomId), class: "button is-small mb-4 is-info ml2"
+    - else
+      = form_for room do |f|
+        = fields_for entry do |e|
+          = e.hidden_field :user_id, value: user.id
+        = f.submit 'チャットを始める'
 
 |  <hr/ >
