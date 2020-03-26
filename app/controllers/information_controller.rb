@@ -68,10 +68,10 @@ class InformationController < ApplicationController
     end
   end
   def search
-    @informations = Information.search(params[:q])
-    @informations = Information.page(params[:page])
+    @informations = Information.search(params[:q]).page(params[:page])
     render "index"
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_information

@@ -19,6 +19,7 @@ section.section.instrument-show
         = @information.description
         h3.subtitle.is-4.pt5
           | Product Specs
+
         table.table.is-narrow
           - if @information.price
             tr
@@ -38,6 +39,7 @@ section.section.instrument-show
         p.has-text-centered.mb4
           | 投稿者
           = @information.user.name
+
           - if user_signed_in?
             = button_to 'リストに追加する', line_items_path(information_id: @information), class: 'button is-warning add-to-cart'
           - else

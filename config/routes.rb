@@ -5,11 +5,14 @@ Rails.application.routes.draw do
     get "search", on: :collection
     resources :reviews
   end
-  
+
+
   devise_for :users, controllers: {
     registrations: 'registrations'
   }
-  
-  
+
+  resources :messages, only: %i[create]
+  resources :rooms, only: %i[create show index]
+
   root 'information#index'
 end
