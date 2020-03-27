@@ -7,11 +7,10 @@ module CurrentCart
   # end
 
   private def set_cart
-    if session[:cart_id].present?
-      @cart = Cart.find(session[:cart_id])
+    if current_user.cart.present?
+      @cart = Cart.find_by(id: current_user&.cart&.id)
     else
       @cart = Cart.create(user: current_user)
-      session[:cart_id] = @cart.id
     end
   end
 

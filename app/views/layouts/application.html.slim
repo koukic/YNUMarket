@@ -37,11 +37,23 @@ html
     = yield
 
   footer.footer.footer-color
-    content.has-text-centered
-      p
-        a[href="/privacy"]
-          | プライバシーポリシー
+    .footer-content
+      ul.content-list
+        li.content-list__heading
+          | 本サービスについて
+        li.content-list__item
+          a[href="/privacy"]
+            | プライバシーポリシー
+        li.content-list__item
+          a[href="/service_terms"]
+            | 利用規約
 
-      
-        a[href="/service_terms"]
-          | 利用規約
+      ul.content-list
+        li.content-list__heading
+          | ヘルプ
+        li.content-list__item
+          a[href="https://twitter.com/02P2YpFj7JlGIeO"]
+            | Twitter
+        li.content-list__item
+          a[href="https://www.instagram.com/ynumarket/"]
+            | Instagram

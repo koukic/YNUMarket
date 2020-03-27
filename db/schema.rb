@@ -84,10 +84,6 @@ ActiveRecord::Schema.define(version: 2020_03_22_133453) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-
-=======
->>>>>>> :+1:Add has_one
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -133,7 +129,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_133453) do
   add_foreign_key "information_images", "information"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "information"
-<<<<<<< HEAD
+
 
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
@@ -143,9 +139,9 @@ ActiveRecord::Schema.define(version: 2020_03_22_133453) do
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
 
-=======
+
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
->>>>>>> :+1:Add has_one
+
   add_foreign_key "taggings", "tags"
 end

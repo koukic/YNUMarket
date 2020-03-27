@@ -53,13 +53,10 @@
           /       = information.condition
 
         .pa3
-          h3.fw7.f4.title
+          h3.fw5.f5.title
             = link_to information.title, information, class: "bg-gradient-dark"
 
-          p.has-text-gray.fg.pt1
-            | 投稿者
-            = information.user.name
-          p.f3.fw6.has-text-right.pt2.price
+          .f4.fw6.has-text-right.pt4.price
             = number_to_currency(information.price, unit: "￥", precision: 0)
 
           - if user_signed_in? && current_user == @user || information_author(information)
