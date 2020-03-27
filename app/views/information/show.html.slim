@@ -16,7 +16,7 @@ section.section.instrument-show
       .content.pa4.mt3.bg-white.border-radius-3
         h3.subtitle.is-4
           | Description
-        = @information.description
+        = safe_join(@information.description.split("\n"),tag(:br))
         h3.subtitle.is-4.pt5
           | Product Specs
 

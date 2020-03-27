@@ -15,6 +15,7 @@ class InformationController < ApplicationController
   # GET /information/1
   # GET /information/1.json
   def show
+    @cart = Cart.find_by(id: current_user&.cart&.id)
     @information = Information.find(params[:id])
   end
   # GET /information/new

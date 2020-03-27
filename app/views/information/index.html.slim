@@ -16,7 +16,7 @@
           .dropdown-trigger
             button.button[aria-haspopup="true" aria-controls="dropdown-menu2"]
               span
-                | タグ検索
+                | カテゴリー検索
               span.icon.is-small
                 i.fas.fa-angle-down
           #dropdown-menu2.dropdown-menu[role="menu"]
@@ -61,7 +61,8 @@
 
           - if user_signed_in? && current_user == @user || information_author(information)
             / = link_to 'Edit', edit_information_path(information), class: "button is-small"
-            = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
+            .has-text-right
+              = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
 
 
 = paginate @informations,window: 2
