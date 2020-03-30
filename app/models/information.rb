@@ -17,8 +17,8 @@ class Information < ApplicationRecord
   CONDITION = {
     'new' => "new",
     'fair' => "fair",
-    'サークル・バスケ' => 'サークルandサークル・バスケ',
-    'サークル・サッカー' => 'サークルandサークル・サッカー'
+    'サークル・バスケ' => "サークルandサークル・バスケ",
+    'サークル・サッカー' => "サークルandサークル・サッカー"
   }
 
 

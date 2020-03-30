@@ -36,11 +36,13 @@ class InformationController < ApplicationController
     images.each do |image|
       @information.information_images.new(image: image)
     end
-    if @information.tag_list = 'サークルandサークル・バスケ'
+
+    if @information.tag_list == ['サークルandサークル・バスケ']
       @information.tag_list = ['サークル','サークル・バスケ']
-    elsif @information.tag_list = 'サークルandサークル・サッカー'
+    elsif @information.tag_list == ['サークルandサークル・サッカー']
       @information.tag_list = ['サークル', 'サークル・サッカー']
     end
+
     respond_to do |format|
       if @information.save
         format.html { redirect_to @information, notice: 'Information was successfully created.' }
