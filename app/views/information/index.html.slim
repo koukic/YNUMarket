@@ -21,7 +21,8 @@
                 i.fas.fa-angle-down
           #dropdown-menu2.dropdown-menu[role="menu"]
             .dropdown-content
-              - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
+              / - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
+              - @tag.each do |tag|
                 .dropdown-item
                   = link_to tag, information_index_path(tag_name: tag)
                 hr.dropdown-divider

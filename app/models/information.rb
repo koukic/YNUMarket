@@ -14,12 +14,40 @@ class Information < ApplicationRecord
   allowed."}
   validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum
   allowed."}
-  CONDITION = {
-    'new' => "new",
-    'fair' => "fair",
-    'サークル・バスケ' => "サークルandサークル・バスケ",
-    'サークル・サッカー' => "サークルandサークル・サッカー"
-  }
+  CONDITION = [
+            {
+              "category": "フリマ",
+              "order": 0,
+              "items": [
+                {
+                  "key": "k",
+                  "name": "教科書",
+                  "order": 0
+                },
+                {
+                  "key": "m",
+                  "name": "漫画",
+                  "order": 1
+                }
+              ]
+            },
+            {
+              "category": "サークル",
+              "order": 1,
+              "items": [
+                {
+                  "key": "b",
+                  "name": "バスケ",
+                  "order": 0
+                },
+                {
+                  "key": "s",
+                  "name": "サッカー",
+                  "order": 1
+                }
+              ]
+            }
+          ]
 
 
   class << self
