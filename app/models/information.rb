@@ -49,6 +49,11 @@ class Information < ApplicationRecord
             }
           ]
 
+  TAG = CONDITION.sort{|a, b| a["order"] <=> b["order"]}.map{|category|
+          category["items"].sort{|items_a, items_b| items_a["order"] <=> items_b["order"] }.map{|item|
+            item.name
+          }
+        }
 
   class << self
     def search(query)

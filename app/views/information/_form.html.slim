@@ -26,7 +26,7 @@
               | *タグの選択
             .control.has-icons-left
               span.select
-                = f.input_field :tag_list, collection: Information::CONDITION.map { |key, value| [key, value] }, prompt: "Select condition"
+                = f.input_field :tag_list, collection: TAG, prompt: "Select condition"
               span.icon.is-small.is-left
                 i.fa.fa-paint-brush
 

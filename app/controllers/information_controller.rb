@@ -6,45 +6,7 @@ class InformationController < ApplicationController
   def index
     # @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : Cart.find_by(id: current_user&.cart&.id))
     @cart = Cart.find_by(id: current_user&.cart&.id)
-    @a = [
-      {
-        "category_name": "フリマ",
-        "category_key": "f",
-        "order": 0,
-        "items": [
-          {
-            "key": "k",
-            "name": "教科書",
-            "order": 0
-          },
-          {
-            "key": "m",
-            "name": "漫画",
-            "order": 1
-          }
-        ]
-      },
-      {
-        "category_name": "サークル",
-        "category_key": "s",
-        "order": 1,
-        "items": [
-          {
-            "key": "b",
-            "name": "バスケ",
-            "order": 0
-          },
-          {
-            "key": "s",
-            "name": "サッカー",
-            "order": 1
-          }
-        ]
-      }
-    ]
-
-    @tag = @a.sort{|a, b| a["order"] <=> b["order"]}.map{|category| items.sort{|items_a, items_b| items_a["order"] <=> items_b["order"] }.map{|item| item.name} }
-
+    
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
     else
