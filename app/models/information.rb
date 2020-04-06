@@ -16,34 +16,34 @@ class Information < ApplicationRecord
   allowed."}
   CONDITION = [
             {
-              "category": "フリマ",
-              "order": 0,
-              "items": [
+              "category"=> "フリマ",
+              "order"=> 0,
+              "items"=> [
                 {
-                  "key": "k",
-                  "name": "教科書",
-                  "order": 0
+                  "key"=> "k",
+                  "name"=> "教科書",
+                  "order"=> 0
                 },
                 {
-                  "key": "m",
-                  "name": "漫画",
-                  "order": 1
+                  "key"=> "m",
+                  "name"=> "漫画",
+                  "order"=> 1
                 }
               ]
             },
             {
-              "category": "サークル",
-              "order": 1,
-              "items": [
+              "category"=> "サークル",
+              "order"=> 1,
+              "items"=> [
                 {
-                  "key": "b",
-                  "name": "バスケ",
-                  "order": 0
+                  "key"=> "b",
+                  "name"=> "バスケ",
+                  "order"=> 0
                 },
                 {
-                  "key": "s",
-                  "name": "サッカー",
-                  "order": 1
+                  "key"=> "s",
+                  "name"=> "サッカー",
+                  "order"=> 1
                 }
               ]
             }
@@ -51,7 +51,7 @@ class Information < ApplicationRecord
 
   TAG = CONDITION.sort{|a, b| a["order"] <=> b["order"]}.map{|category|
           category["items"].sort{|items_a, items_b| items_a["order"] <=> items_b["order"] }.map{|item|
-            item.name
+            item["name"]
           }
         }
 
