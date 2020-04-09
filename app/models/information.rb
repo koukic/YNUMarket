@@ -10,11 +10,12 @@ class Information < ApplicationRecord
   belongs_to :user, optional: true
   has_many :reviews,dependent: :destroy
   validates :title, presence: true
+  validates :description, presence: true
   validates :description, length: { maximum: 1000, too_long: "%{count} characters is the maximum
   allowed."}
   validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum
   allowed."}
-  CONDITION = [
+  TAGLIST = [
             {
               "category"=> "フリマ",
               "order"=> 0,
@@ -47,13 +48,9 @@ class Information < ApplicationRecord
                 }
               ]
             }
-          ]
+          ].freeze
 
-  TAG = CONDITION.sort{|a, b| a["order"] <=> b["order"]}.map{|category|
-          category["items"].sort{|items_a, items_b| items_a["order"] <=> items_b["order"] }.map{|item|
-            item["name"]
-          }
-        }
+  CONDITION = {"サークルandサークル・サッカー" => 'サークル・サッカー', "サークルandサークル・バスケ"=> 'サークル・バスケ'}
 
   class << self
     def search(query)

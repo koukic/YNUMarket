@@ -21,22 +21,40 @@
                 i.fas.fa-angle-down
           #dropdown-menu2.dropdown-menu[role="menu"]
             .dropdown-content
-              - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
-                .dropdown-item
-                  = link_to tag, information_index_path(tag_name: tag)
-                hr.dropdown-divider
+              - Information::TAGLIST.sort { |category1, category2| category1['order'] <=> category2['order'] }.map do |category|
+                  .dropdown-item
+                    = link_to category["category"], information_index_path(tag_name: category["category"])
+                  - category["items"].sort { |item1, item2| item1['order'] <=> item2['order'] }.map do |item|
+                    .dropdown-item
+                      = link_to item["name"], information_index_path(tag_name: item["name"])
 
-        / nav.dropdown__nav
-        /   button.dropdown__toggle
-        /     = image_tag 'ic_hamburger.svg', size:'38x38', class: 'dropdown__show-menu-image'
-        /     = image_tag 'ic_cross.svg', size:'38x38', class: 'dropdown__close-menu-image dropdown__close-menu-image--hidden'
-        /
-        /   = link_to 'TestInformation', root_path, class: 'dropdown__test'
-        /
-        /   ul.dropdown__list.dropdown__list--hidden
-        /     - ActsAsTaggableOn::Tag.all.map(&:name).each do |tag|
-        /       li.dropdown__item
-        /         = link_to tag, information_index_path(tag_name: tag)
+
+  .tabs.is-boxed.container
+    ul#myDIV
+      li.is-active.tab-content
+        a
+          span.icon.is-small
+            i.fas.fa-image[aria-hidden="true"]
+          span
+            | Pictures
+      li.tab-content
+        a
+          span.icon.is-small
+            i.fas.fa-music[aria-hidden="true"]
+          span
+            | Music
+      li.tab-content
+        a
+          span.icon.is-small
+            i.fas.fa-film[aria-hidden="true"]
+          span
+            | Videos
+      li.tab-content
+        a
+          span.icon.is-small
+            i.far.fa-file-alt[aria-hidden="true"]
+          span
+            | Documents
 
 .instrument-index-grid.pt4
   - if @informations.present?
@@ -46,11 +64,6 @@
           - if information.information_images.present?
             .feature-image
               = link_to image_tag(information.information_images.first.image.url(:thumb)), information
-
-          / - if information.condition?
-          /   .condition
-          /     span.tag.is-dark
-          /       = information.condition
 
         .pa3
           h3.fw5.f5.title

@@ -6,7 +6,7 @@ class InformationController < ApplicationController
   def index
     # @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : Cart.find_by(id: current_user&.cart&.id))
     @cart = Cart.find_by(id: current_user&.cart&.id)
-    
+
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
     else
@@ -39,9 +39,9 @@ class InformationController < ApplicationController
     end
 
     if @information.tag_list == ['サークルandサークル・バスケ']
-      @information.tag_list = ['サークル','サークル・バスケ']
+      @information.tag_list = ['サークル','バスケ']
     elsif @information.tag_list == ['サークルandサークル・サッカー']
-      @information.tag_list = ['サークル', 'サークル・サッカー']
+      @information.tag_list = ['サークル', 'サッカー']
     end
 
     respond_to do |format|
