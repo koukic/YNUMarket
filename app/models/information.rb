@@ -27,30 +27,51 @@ class Information < ApplicationRecord
                 },
                 {
                   "key"=> "m",
-                  "name"=> "漫画",
+                  "name"=> "本・漫画",
                   "order"=> 1
+                },
+                {
+                  "key"=> "i",
+                  "name"=> "インテリア・家具",
+                  "order"=> 2
+                },
+                {
+                  "key"=> "s",
+                  "name"=> "スポーツ",
+                  "order"=> 3
+                },
+                {
+                  "key"=> "t",
+                  "name"=> "その他",
+                  "order"=> 4
                 }
               ]
             },
             {
-              "category"=> "サークル",
+              "category"=> "サービス",
               "order"=> 1,
+              "items"=> [
+              ]
+            },
+            {
+              "category"=> "サークル",
+              "order"=> 2,
               "items"=> [
                 {
                   "key"=> "b",
-                  "name"=> "バスケ",
+                  "name"=> "サークル・スポーツ",
                   "order"=> 0
                 },
                 {
                   "key"=> "s",
-                  "name"=> "サッカー",
+                  "name"=> "サークル・文化系",
                   "order"=> 1
                 }
               ]
             }
           ].freeze
 
-  CONDITION = {"サークルandサークル・サッカー" => 'サークル・サッカー', "サークルandサークル・バスケ"=> 'サークル・バスケ'}
+  CONDITION = {"フリマand教科書" => '教科書',"フリマand本・漫画" => '本・漫画',"フリマandインテリア・家具" => 'インテリア・家具',"フリマandスポーツ" => 'スポーツ',"フリマandその他" => 'フリマ・その他',"サービス" => 'サービス',"サークルandサークル・スポーツ" => 'サークル・スポーツ', "サークルandサークル・文化系"=> 'サークル・文化系'}
 
   class << self
     def search(query)

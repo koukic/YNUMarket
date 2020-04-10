@@ -2,8 +2,15 @@
   section.hero.is-warning
     .hero-body
       .container
-        h1.title
-          |  Browse the latest test information
+        h1.f3.fw6
+          |  本サービスの特徴
+        ul
+          li.fw7.mt2
+            | ・横国生が使えるフリマ、サービス、サークル紹介アプリです
+          li.fw7.mt2
+            | ・直接あって渡すため手数料は無料です！横国生間での売買なので安心して使えます！
+          li.fw7.mt2.mb2
+            | ・コロナウイルスのため例年よりサークルが選びにくいと思うのでサークル紹介機能もあります！
         = form_tag :search_information_index, method: :get, class: "search" do
           .field.is-grouped
             p.control.is-expanded
@@ -22,60 +29,143 @@
           #dropdown-menu2.dropdown-menu[role="menu"]
             .dropdown-content
               - Information::TAGLIST.sort { |category1, category2| category1['order'] <=> category2['order'] }.map do |category|
-                  .dropdown-item
+                  .dropdown-item.fw7
                     = link_to category["category"], information_index_path(tag_name: category["category"])
                   - category["items"].sort { |item1, item2| item1['order'] <=> item2['order'] }.map do |item|
                     .dropdown-item
                       = link_to item["name"], information_index_path(tag_name: item["name"])
 
 
-  .tabs.is-boxed.container
-    ul#myDIV
-      li.is-active.tab-content
-        a
-          span.icon.is-small
-            i.fas.fa-image[aria-hidden="true"]
-          span
-            | Pictures
-      li.tab-content
-        a
-          span.icon.is-small
-            i.fas.fa-music[aria-hidden="true"]
-          span
-            | Music
-      li.tab-content
-        a
-          span.icon.is-small
-            i.fas.fa-film[aria-hidden="true"]
-          span
-            | Videos
-      li.tab-content
-        a
-          span.icon.is-small
-            i.far.fa-file-alt[aria-hidden="true"]
-          span
-            | Documents
+/   .tabs.is-boxed.container
+/     ul#myDIV
+/       li.is-active.tab-content
+/         = link_to 'フリマ', information_index_path(tag_name: 'フリマ')
+/       li.tab-content.is-active
+/         = link_to 'サービス', information_index_path(tag_name: 'サービス')
+/       li.tab-content.is-active
+/         = link_to 'サークル', information_index_path(tag_name: 'サークル')
+/
+/ .instrument-index-grid.pt4
+/   - if @informations.present?
+/     - @informations.each do |information|
+/       .instrument.border-light
+/         .instrument-thumb
+/           - if information.information_images.present?
+/             .feature-image
+/               = link_to image_tag(information.information_images.first.image.url(:thumb)), information
+/
+/         .pa3
+/           h3.fw5.f5.title
+/             = link_to information.title, information, class: "bg-gradient-dark"
+/
+/           .f4.fw6.has-text-right.pt4.price
+/             = number_to_currency(information.price, unit: "￥", precision: 0)
+/
+/           - if user_signed_in? && current_user == @user || information_author(information)
+/             / = link_to 'Edit', edit_information_path(information), class: "button is-small"
+/             .has-text-right
+/               = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
 
-.instrument-index-grid.pt4
-  - if @informations.present?
-    - @informations.each do |information|
-      .instrument.border-light
-        .instrument-thumb
-          - if information.information_images.present?
-            .feature-image
-              = link_to image_tag(information.information_images.first.image.url(:thumb)), information
+.tab-wrap
+  input#TAB-01.tab-switch[type="radio" name="TAB" checked="checked"]
+  label.tab-label[for="TAB-01"]
+    | カテゴリー検索or全て
+  .tab-content
+    .instrument-index-grid.pt4
+      - if @informations.present?
+        - @informations.each do |information|
+          .instrument.border-light
+            .instrument-thumb
+              - if information.information_images.present?
+                .feature-image
+                  = link_to image_tag(information.information_images.first.image.url(:thumb)), information
 
-        .pa3
-          h3.fw5.f5.title
-            = link_to information.title, information, class: "bg-gradient-dark"
+            .pa3
+              h3.fw5.f5.title
+                = link_to information.title, information, class: "bg-gradient-dark"
 
-          .f4.fw6.has-text-right.pt4.price
-            = number_to_currency(information.price, unit: "￥", precision: 0)
+              .f4.fw6.has-text-right.pt4.price
+                = number_to_currency(information.price, unit: "￥", precision: 0)
 
-          - if user_signed_in? && current_user == @user || information_author(information)
-            / = link_to 'Edit', edit_information_path(information), class: "button is-small"
-            .has-text-right
-              = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
+              - if user_signed_in? && current_user == @user || information_author(information)
+                / = link_to 'Edit', edit_information_path(information), class: "button is-small"
+                .has-text-right
+                  = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
+
+  input#TAB-02.tab-switch[type="radio" name="TAB"]
+  label.tab-label[for="TAB-02"]
+    | フリマ
+  .tab-content
+    .instrument-index-grid.pt4
+      - if @information_furima.present?
+        - @information_furima.each do |information|
+          .instrument.border-light
+            .instrument-thumb
+              - if information.information_images.present?
+                .feature-image
+                  = link_to image_tag(information.information_images.first.image.url(:thumb)), information
+
+            .pa3
+              h3.fw5.f5.title
+                = link_to information.title, information, class: "bg-gradient-dark"
+
+              .f4.fw6.has-text-right.pt4.price
+                = number_to_currency(information.price, unit: "￥", precision: 0)
+
+              - if user_signed_in? && current_user == @user || information_author(information)
+                / = link_to 'Edit', edit_information_path(information), class: "button is-small"
+                .has-text-right
+                  = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
+
+  input#TAB-03.tab-switch[type="radio" name="TAB"]
+  label.tab-label[for="TAB-03"]
+    | サービス
+  .tab-content
+    .instrument-index-grid.pt4
+      - if @information_service.present?
+        - @information_service.each do |information|
+          .instrument.border-light
+            .instrument-thumb
+              - if information.information_images.present?
+                .feature-image
+                  = link_to image_tag(information.information_images.first.image.url(:thumb)), information
+
+            .pa3
+              h3.fw5.f5.title
+                = link_to information.title, information, class: "bg-gradient-dark"
+
+              .f4.fw6.has-text-right.pt4.price
+                = number_to_currency(information.price, unit: "￥", precision: 0)
+
+              - if user_signed_in? && current_user == @user || information_author(information)
+                / = link_to 'Edit', edit_information_path(information), class: "button is-small"
+                .has-text-right
+                  = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
+
+  input#TAB-04.tab-switch[type="radio" name="TAB"]
+  label.tab-label[for="TAB-04"]
+    | サークル
+  .tab-content
+    .instrument-index-grid.pt4
+      - if @information_circle.present?
+        - @information_circle.each do |information|
+          .instrument.border-light
+            .instrument-thumb
+              - if information.information_images.present?
+                .feature-image
+                  = link_to image_tag(information.information_images.first.image.url(:thumb)), information
+
+            .pa3
+              h3.fw5.f5.title
+                = link_to information.title, information, class: "bg-gradient-dark"
+
+              .f4.fw6.has-text-right.pt4.price
+                = number_to_currency(information.price, unit: "￥", precision: 0)
+
+              - if user_signed_in? && current_user == @user || information_author(information)
+                / = link_to 'Edit', edit_information_path(information), class: "button is-small"
+                .has-text-right
+                  = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
 
 
 = paginate @informations,window: 2

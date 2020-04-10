@@ -10,8 +10,12 @@ class InformationController < ApplicationController
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
     else
-      @informations = Information.order(:id).page params[:page]
+      @informations = Information.order(created_at: :desc).page params[:page]
     end
+
+    @information_furima = Information.tagged_with("フリマ").order(created_at: :desc).page params[:page]
+    @information_service = Information.tagged_with("サービス").order(created_at: :desc).page params[:page]
+    @information_circle = Information.tagged_with("サークル").order(:id).page params[:page]
   end
   # GET /information/1
   # GET /information/1.json
@@ -38,15 +42,27 @@ class InformationController < ApplicationController
       @information.information_images.new(image: image)
     end
 
-    if @information.tag_list == ['サークルandサークル・バスケ']
-      @information.tag_list = ['サークル','バスケ']
-    elsif @information.tag_list == ['サークルandサークル・サッカー']
-      @information.tag_list = ['サークル', 'サッカー']
+    if @information.tag_list == ['フリマand教科書']
+      @information.tag_list = ['フリマ','教科書']
+    elsif @information.tag_list == ['フリマand本・漫画']
+      @information.tag_list = ['フリマ', '本・漫画']
+    elsif @information.tag_list == ['フリマandインテリア・家具']
+      @information.tag_list == ['フリマ', 'インテリア・家具']
+    elsif @information.tag_list == ['フリマandスポーツ']
+      @information.tag_list = ['フリマ', 'スポーツ']
+    elsif @information.tag_list == ['フリマandその他']
+      @information.tag_list = ['フリマ', 'その他']
+    elsif @information.tag_list == ['サービス']
+      @information.tag_list = ['サービス']
+    elsif @information.tag_list == ['サークルandスポーツ']
+      @information.tag_list = ['サークル', 'サークル・スポーツ']
+    elsif @information.tag_list == ['サークルand文化系']
+      @information.tag_list = ['サークル', 'サークル・文化系']
     end
 
     respond_to do |format|
       if @information.save
-        format.html { redirect_to @information, notice: 'Information was successfully created.' }
+        format.html { redirect_to @information, notice: '投稿することを成功しました' }
         format.json { render :show, status: :created, location: @information }
       else
         format.html { render :new }
@@ -72,7 +88,7 @@ class InformationController < ApplicationController
   def destroy
     @information.destroy
     respond_to do |format|
-      format.html { redirect_to information_index_url, notice: 'Information was successfully destroyed.' }
+      format.html { redirect_to information_index_url, notice: '投稿が削除されました' }
       format.json { head :no_content }
     end
   end
