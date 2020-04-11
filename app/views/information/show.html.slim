@@ -2,7 +2,7 @@
 section.section.instrument-show
   .columns
     .column.is-8
-      h1.title.is-2
+      h1.title
         = @information.title
       ul.pv1
         / - if @information.condition?
@@ -13,12 +13,24 @@ section.section.instrument-show
           - @information.information_images.each do |information_image|
             = image_tag(information_image.image.url)
 
+    .column.is-3.is-offset-1
+      .bg-white.pa4.border-radius-3
+        - if user_signed_in?
+          = button_to 'リストに追加する', line_items_path(information_id: @information), class: 'button is-warning add-to-cart'
+        - else
+          = button_to 'リストに追加する',  new_user_session_path, class: 'button is-warning add-to-cart'
+
+        p.has-text-centered.mt2
+          | リストに追加することでチャットが可能になり投稿者とコンタクトが取れます。
+        p.has-text-centered.mt2
+          | 投稿者
+          = @information.user.name
+
       .content.pa4.mt3.bg-white.border-radius-3
-        h3.subtitle.is-4
-          | Description
-        = safe_join(@information.description.split("\n"),tag(:br))
-        h3.subtitle.is-4.pt5
-          | Product Specs
+        .pa2
+          h4
+            | 説明
+          = safe_join(@information.description.split("\n"),tag(:br))
 
         table.table.is-narrow
           - if @information.price
@@ -26,7 +38,7 @@ section.section.instrument-show
               td.has-text-weight-bold
                 | 値段:
               td
-                = @information.price
+                = number_to_currency(@information.price, unit: "￥", precision: 0)
 
         /   - if @information.condition
         /     tr
@@ -34,13 +46,3 @@ section.section.instrument-show
         /         | Condition:
         /       td
         /         = @information.condition
-    .column.is-3.is-offset-1
-      .bg-white.pa4.border-radius-3
-        p.has-text-centered.mb4
-          | 投稿者
-          = @information.user.name
-
-          - if user_signed_in?
-            = button_to 'リストに追加する', line_items_path(information_id: @information), class: 'button is-warning add-to-cart'
-          - else
-            = button_to 'リストに追加する',  new_user_session_path, class: 'button is-warning add-to-cart'

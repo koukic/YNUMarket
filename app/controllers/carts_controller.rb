@@ -11,6 +11,7 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @cart = Cart.find_by(id: current_user&.cart&.id)
 
     @line_items = @cart.line_items
     @line_items.each do |item|

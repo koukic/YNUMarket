@@ -54,9 +54,9 @@ class InformationController < ApplicationController
       @information.tag_list = ['フリマ', 'その他']
     elsif @information.tag_list == ['サービス']
       @information.tag_list = ['サービス']
-    elsif @information.tag_list == ['サークルandスポーツ']
+    elsif @information.tag_list == ['サークルandサークル・スポーツ']
       @information.tag_list = ['サークル', 'サークル・スポーツ']
-    elsif @information.tag_list == ['サークルand文化系']
+    elsif @information.tag_list == ['サークルandサークル・文化系']
       @information.tag_list = ['サークル', 'サークル・文化系']
     end
 
