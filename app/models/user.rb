@@ -5,7 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :informations
   has_many :reviews,dependent: :destroy
+
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries
+
+  has_one :cart, dependent: :destroy
+
 end

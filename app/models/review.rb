@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
-  belongs_to :information
-  belongs_to :user
+  # belongs_to :information
+  # belongs_to :user
 end

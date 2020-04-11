@@ -11,6 +11,8 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @cart = Cart.find_by(id: current_user&.cart&.id)
+
     @line_items = @cart.line_items
     @line_items.each do |item|
       @user = item.information.user
@@ -35,6 +37,7 @@ class CartsController < ApplicationController
         @entry = Entry.new
       end
     end
+
   end
 
   # GET /carts/new
@@ -49,8 +52,7 @@ class CartsController < ApplicationController
   # POST /carts
   # POST /carts.json
   def create
-    @cart = Cart.new(cart_params)
-
+    @cart = Cart.new(cart_params, user: current_user)
     respond_to do |format|
       if @cart.save
         format.html { redirect_to @cart, notice: 'Cart was successfully created.' }

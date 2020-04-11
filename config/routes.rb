@@ -11,8 +11,14 @@ Rails.application.routes.draw do
     registrations: 'registrations'
   }
 
+
   resources :messages, only: %i[create]
   resources :rooms, only: %i[create show index]
+
+  get 'privacy', to: 'rules#privacy'
+
+  get 'service_terms', to: 'rules#service_terms'
+
 
   root 'information#index'
 end
