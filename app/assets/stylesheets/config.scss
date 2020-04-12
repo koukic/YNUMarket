@@ -4,19 +4,19 @@
  $color-green: rgb(3, 170, 148);
  $color-font: rgba(0, 0, 0, .87);
  $color-border: rgba(0, 0, 0, .12);
- 
+
 .tag:not(body).is-dark {
     background-color: #363636;
     color: whitesmoke;
     margin-left: 5px;
 }
- 
+
  @mixin media-pc {
-   @media (min-width: 768px) {
+   @media (min-width: 769px) {
      @content;
    }
  }
- 
+
  @mixin lighten-text-on-hover($color, $strength: 50%) {
   &:hover {
     color: lighten($color, $strength);
@@ -34,7 +34,7 @@ img {
 $pc-width: 1172px;
 $pc-x-padding: 16px;
  // End: Move somewhere
- 
+
 .header {
   $header-height-mobile: 50px;
 
@@ -49,8 +49,8 @@ $pc-x-padding: 16px;
     justify-content: space-between;
     align-items: center;
   }
-  
-   
+
+
   &__list {
     position: absolute;
     top: $header-height-mobile;

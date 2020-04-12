@@ -24,6 +24,31 @@ nav.header__nav
               span.header__item-list
                 | リスト
                 = cart_count_over_one
+
+      li.header__item
+        .dropdown.dropdown-room
+          .dropdown-trigger
+            span
+              | チャット
+            span.icon.is-small
+              i.fas.fa-angle-down
+          #dropdown-menu2.dropdown-menu[role="menu"]
+            .dropdown-content
+              - @rooms&.each do |room|
+                = link_to room_path(room) do
+                  - if room.users.map(&:name).first != current_user.name
+                    span.header__item-list
+                      = room.users.map(&:name).first
+
+
+      - if @room
+        li.header__item
+            = link_to room_path(@room) do
+              span.icon.is-small
+                i.fa.fa-list
+              span.header__item-list
+                | チャット
+                = room_count_over_one
       li.header__item
         = link_to "ログアウト", destroy_user_session_path, method: :delete
     - else

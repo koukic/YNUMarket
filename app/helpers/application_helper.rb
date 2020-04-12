@@ -5,11 +5,13 @@ module ApplicationHelper
     end
   end
 
-  def cart_has_items
-    return @cart.line_items.count > 0
+  def room_count_over_one
+    if current_user.rooms.count > 0
+      return "<span class='tag is-dark'>#{current_user.rooms.count}</span>".html_safe
+    end
   end
 
-  def tech
-    puts 'hello'
+  def cart_has_items
+    return @cart.line_items.count > 0
   end
 end

@@ -6,6 +6,7 @@ class InformationController < ApplicationController
   def index
     # @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : Cart.find_by(id: current_user&.cart&.id))
     @cart = Cart.find_by(id: current_user&.cart&.id)
+    @rooms = current_user&.rooms
 
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
