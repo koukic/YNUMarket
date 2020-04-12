@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   get 'service_terms', to: 'rules#service_terms'
 
+  get 'buy_guide', to: 'rules#buy_guide'
+
+  get 'sell_guide',to: 'rules#sell_guide'
+
 
   root 'information#index'
 end

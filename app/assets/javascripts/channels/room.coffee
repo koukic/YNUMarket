@@ -7,7 +7,6 @@ document.addEventListener 'turbolinks:load', ->
     received: (data) ->
       @data = data['message'].replace(/\n/g,"<br/>").replace(/\r/g,"")
       $('#direct_messages').append @data
-      alert @data
 
     speak: (message) ->
       @perform 'speak', message: message

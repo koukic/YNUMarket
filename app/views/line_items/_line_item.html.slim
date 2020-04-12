@@ -18,9 +18,9 @@
     - if isRoom == true
        = link_to 'チャットへ', room_path(@roomId), class: "button is-small mb-4 is-info ml2"
     - else
-      = form_for room do |f|
-        = fields_for entry do |e|
+      = form_for @room do |f|
+        = fields_for @entry do |e|
           = e.hidden_field :user_id, value: user.id
-        = f.submit 'チャットを始める'
+        = f.submit 'チャットを始める', class: "button is-small mb-4 is-info mt2"
 
 |  <hr/ >

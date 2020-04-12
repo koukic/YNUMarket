@@ -19,9 +19,9 @@ class CartsController < ApplicationController
     end
 
     @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
+    @userEntry = Entry.where(user_id: @user&.id)
 
-    if @user.id == current_user.id
+    if @user&.id == current_user.id
     else
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
@@ -55,7 +55,7 @@ class CartsController < ApplicationController
     @cart = Cart.new(cart_params, user: current_user)
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html { redirect_to @cart, notice: 'リストの作成に成功しました' }
         format.json { render :show, status: :created, location: @cart }
       else
         format.html { render :new }

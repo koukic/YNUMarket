@@ -2,11 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#direct_messages {
+  min-height: 450px;
+}
 /* チャットの外側部分① */
 #bms_messages_container{
     height: 100%;/*your_containerに対して100%になる */
     width: 100%;/*your_containerに対して100%になる */
-    background-color: #FFEFD5;
 }
 
 /* ヘッダー部分② */
@@ -24,7 +26,6 @@
     height:100%;/*テキストエリアが下に張り付く様にする*/
     border-right: 1px solid #ddd;
     border-left: 1px solid #ddd;
-    background-color: #f5f2ed;
 }
 /* メッセージ全般のスタイル */
 .bms_message {
@@ -49,7 +50,7 @@
 }
 .bms_left .bms_message_box {
     color: #333;/*テキストを黒にする*/
-    background: #fff;
+    background: #ece7dd;
     border: 2px solid #b9aeae;
     border-radius: 30px 30px 30px 0px;/*左下だけ尖らせて吹き出し感を出す*/
     margin-right: 50px;/*左側の発言だとわかる様に、吹き出し右側に隙間を入れる*/
@@ -64,7 +65,7 @@
 }
 .bms_right .bms_message_box {
     color: #312e2e;/*テキストを白にする*/
-    background: #e4ddd0;
+    background: #efece7;
     border: 2px solid #b9aeae;
     border-radius: 30px 30px 0px 30px;/*右下だけ尖らせて吹き出し感を出す*/
     margin-left: 50px;/*右側の発言だとわかる様に、吹き出し左側に隙間を入れる*/
