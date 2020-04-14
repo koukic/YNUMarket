@@ -25,30 +25,32 @@ nav.header__nav
                 | リスト
                 = cart_count_over_one
 
-      li.header__item
-        .dropdown.dropdown-room
-          .dropdown-trigger
-            span
-              | チャット
-            span.icon.is-small
-              i.fas.fa-angle-down
-          #dropdown-menu2.dropdown-menu[role="menu"]
-            .dropdown-content
-              - @rooms&.each do |room|
-                = link_to room_path(room) do
-                  - if room.users.map(&:name).first != current_user.name
-                    span.header__item-list
-                      = room.users.map(&:name).first
-
-
-      - if @room
-        li.header__item
-            = link_to room_path(@room) do
+      / -if @rooms.present?
+      - if @rooms.present?
+        - if @chat_rooms.present?
+          li.header__item
+            = link_to user_rooms_path(current_user) do
               span.icon.is-small
-                i.fa.fa-list
+                i.fas.fa-comments
               span.header__item-list
                 | チャット
                 = room_count_over_one
+
+
+      / li.header__item
+      /   .dropdown.dropdown-room
+      /     .dropdown-trigger
+      /       | チャット
+      /       span.icon.is-small
+      /         i.fas.fa-angle-down
+      /     #dropdown-menu2.dropdown-menu[role="menu"]
+      /       .dropdown-content
+              / - @rooms&.each do |room|
+              /   = link_to room_path(room) do
+              /     - if room.users.map(&:name).first != current_user.name
+              /       span.header__item-list
+              /         = room.users.map(&:name).first
+
       li.header__item
         = link_to "ログアウト", destroy_user_session_path, method: :delete
     - else

@@ -12,6 +12,10 @@ class CartsController < ApplicationController
   # GET /carts/1.json
   def show
     @cart = Cart.find_by(id: current_user&.cart&.id)
+    @rooms = current_user&.rooms
+    @chat_rooms = @rooms&.select do |room|
+      User.find_by(id: room.entries.first.user_id).name != current_user.name
+    end
 
     @line_items = @cart.line_items
     @line_items.each do |item|

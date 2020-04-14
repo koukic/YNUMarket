@@ -13,7 +13,10 @@ Rails.application.routes.draw do
 
 
   resources :messages, only: %i[create]
-  resources :rooms, only: %i[create show index]
+  resources :rooms, only: %i[create show]
+  resources :users, only: [] do
+    resources :rooms, only: %i[index]
+  end
 
   get 'privacy', to: 'rules#privacy'
 

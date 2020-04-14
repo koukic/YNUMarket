@@ -1,0 +1,21 @@
+.keep-shopping.pv1.mt4.has-text-right
+  = link_to 'トップページに戻る', root_path, class: 'button is-warning'
+
+.fw8.f4
+  | ここは自分の投稿した商品に興味をもちチャットを送ってきた人の一覧ページです
+
+.mt2.fw4.f5
+  |チャットへのボタンを押して送られてきた内容を確認しましょう
+
+hr
+
+.section.min-height
+  - @rooms&.each do |room|
+    .columns.align-items-center
+      = link_to room_path(room) do
+        - if User.find_by(id: room.entries.first.user_id).name != current_user.name
+          span.icon.is-small
+            i.fas.fa-user-alt
+          = User.find_by(id: room.entries.first.user_id).name
+          = link_to 'チャットへ', room_path(room), class: "button is-small mb-4 is-info ml5"
+      hr

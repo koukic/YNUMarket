@@ -7,6 +7,9 @@ class InformationController < ApplicationController
     # @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : Cart.find_by(id: current_user&.cart&.id))
     @cart = Cart.find_by(id: current_user&.cart&.id)
     @rooms = current_user&.rooms
+    @chat_rooms = @rooms&.select do |room|
+      User.find_by(id: room.entries.first.user_id).name != current_user.name
+    end
 
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
@@ -22,6 +25,10 @@ class InformationController < ApplicationController
   # GET /information/1.json
   def show
     @cart = Cart.find_by(id: current_user&.cart&.id)
+    @rooms = current_user&.rooms
+    @chat_rooms = @rooms&.select do |room|
+      User.find_by(id: room.entries.first.user_id).name != current_user.name
+    end
     @information = Information.find(params[:id])
   end
   # GET /information/new
