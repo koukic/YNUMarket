@@ -13,11 +13,18 @@ Rails.application.routes.draw do
 
 
   resources :messages, only: %i[create]
-  resources :rooms, only: %i[create show index]
+  resources :rooms, only: %i[create show]
+  resources :users, only: [] do
+    resources :rooms, only: %i[index]
+  end
 
   get 'privacy', to: 'rules#privacy'
 
   get 'service_terms', to: 'rules#service_terms'
+
+  get 'buy_guide', to: 'rules#buy_guide'
+
+  get 'sell_guide', to: 'rules#sell_guide'
 
 
   root 'information#index'

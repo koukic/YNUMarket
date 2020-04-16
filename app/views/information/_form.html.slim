@@ -17,7 +17,7 @@
 
       .field
         .control
-          = f.input :price, required: true, input_html: { class: "input", maxlength: 7 }, wrapper: false, label_html: { class:"label" }, label: "値段"
+          = f.input :price, required: true, input_html: { class: "input", maxlength: 7 }, wrapper: false, label_html: { class:"label" }, label: "値段(サークルの場合必要ないです)"
 
       .columns
         .field.column.is-4
@@ -26,7 +26,7 @@
               | *タグの選択
             .control.has-icons-left
               span.select
-                = f.input_field :tag_list, collection: Information::CONDITION.map { |key, value| [value, key] }, prompt: "Select condition"
+                = f.input_field :tag_list, collection: Information::CONDITION.map { |key, value| [value, key] }, prompt: "タグを選ぶ"
               span.icon.is-small.is-left
                 i.fa.fa-paint-brush
 

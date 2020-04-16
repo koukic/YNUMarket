@@ -31,7 +31,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: 'Item added to cart' }
+        format.html { redirect_to @line_item.cart, notice: '商品をリストに追加しました' }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -57,10 +57,10 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @cart = Cart.find(session[:cart_id])
+    @cart = Cart.find_by(id: current_user&.cart&.id)
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to cart_path(@cart), notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to cart_path(@cart), notice: '商品がリストから削除されました' }
       format.json { head :no_content }
     end
   end

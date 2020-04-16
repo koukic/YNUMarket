@@ -7,7 +7,7 @@
             .bms_message_box
               .bms_message_content
                 .bms_message_text
-                  = message.content
+                  = simple_format(message.content)
             .created_at
               = message.created_at.to_s(:datetime_jp)
           .bms_clear
@@ -16,7 +16,7 @@
             .bms_message_box
               .bms_message_content
                 .bms_message_text
-                  = message.content
+                  = simple_format(message.content)
             .created_at
               = message.created_at.to_s(:datetime_jp)
           .bms_clear

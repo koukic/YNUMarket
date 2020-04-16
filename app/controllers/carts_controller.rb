@@ -12,6 +12,10 @@ class CartsController < ApplicationController
   # GET /carts/1.json
   def show
     @cart = Cart.find_by(id: current_user&.cart&.id)
+    @rooms = current_user&.rooms
+    @chat_rooms = @rooms&.select do |room|
+      User.find_by(id: room.entries.first.user_id).name != current_user.name
+    end
 
     @line_items = @cart.line_items
     @line_items.each do |item|
@@ -19,9 +23,9 @@ class CartsController < ApplicationController
     end
 
     @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
+    @userEntry = Entry.where(user_id: @user&.id)
 
-    if @user.id == current_user.id
+    if @user&.id == current_user.id
     else
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
@@ -55,7 +59,7 @@ class CartsController < ApplicationController
     @cart = Cart.new(cart_params, user: current_user)
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html { redirect_to @cart, notice: 'リストの作成に成功しました' }
         format.json { render :show, status: :created, location: @cart }
       else
         format.html { render :new }
