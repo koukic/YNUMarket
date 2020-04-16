@@ -5,8 +5,8 @@ document.addEventListener 'turbolinks:load', ->
     disconnected: ->
 
     received: (data) ->
-      @data = data['message'].replace(/\n/g,"<br/>").replace(/\r/g,"")
-      $('#direct_messages').append @data
+      # @data = data['message'].replace(/\n/g,"<br/>").replace(/\r/g,"")
+      $('#direct_messages').append data['message']
 
     speak: (message) ->
       @perform 'speak', message: message

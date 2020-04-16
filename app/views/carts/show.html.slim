@@ -1,10 +1,9 @@
 .keep-shopping.pv1.mt4.has-text-right
   = link_to '他の商品を見る', root_path, class: 'button is-warning'
 hr
-section.section
+.section.min-height
   / = render(@cart.line_items)
   = render @cart.line_items, isRoom: @isRoom, roomId: @roomId, romm: @room, entry: @entry, user: @user
-  / .columns
   /   .column
   /     = button_to 'リストを空にする', @cart, method: :delete, data: { confirm: "本当にリストを空にしますか？ " }, class: "button is-danger"
   /   .column.total.has-text-right
