@@ -11,6 +11,15 @@
             | ・直接あって渡すため手数料は無料です！横国生間での売買なので安心して使えます！
           li.fw8.mt2.mb2
             | ・コロナウイルスのため例年よりサークルが選びにくいと思うのでサークル紹介機能もあります！
+
+            h1.f3.fw6
+              |  使い方
+            .mt2
+              a[href="/buy_guide"]
+                | 購入、投稿者とのチャットの仕方(タップしてください)
+            .mt2
+              a[href="/sell_guide"]
+                | 投稿、購入希望者とのコンタクトの取る方法（タップしてください）
         = form_tag :search_information_index, method: :get, class: "search" do
           .field.is-grouped
             p.control.is-expanded
@@ -34,37 +43,6 @@
                   - category["items"].sort { |item1, item2| item1['order'] <=> item2['order'] }.map do |item|
                     .dropdown-item
                       = link_to item["name"], information_index_path(tag_name: item["name"])
-
-
-/   .tabs.is-boxed.container
-/     ul#myDIV
-/       li.is-active.tab-content
-/         = link_to 'フリマ', information_index_path(tag_name: 'フリマ')
-/       li.tab-content.is-active
-/         = link_to 'サービス', information_index_path(tag_name: 'サービス')
-/       li.tab-content.is-active
-/         = link_to 'サークル', information_index_path(tag_name: 'サークル')
-/
-/ .instrument-index-grid.pt4
-/   - if @informations.present?
-/     - @informations.each do |information|
-/       .instrument.border-light
-/         .instrument-thumb
-/           - if information.information_images.present?
-/             .feature-image
-/               = link_to image_tag(information.information_images.first.image.url(:thumb)), information
-/
-/         .pa3
-/           h3.fw5.f5.title
-/             = link_to information.title, information, class: "bg-gradient-dark"
-/
-/           .f4.fw6.has-text-right.pt4.price
-/             = number_to_currency(information.price, unit: "￥", precision: 0)
-/
-/           - if user_signed_in? && current_user == @user || information_author(information)
-/             / = link_to 'Edit', edit_information_path(information), class: "button is-small"
-/             .has-text-right
-/               = link_to '削除', information, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "button is-small"
 
 .tab-wrap
   input#TAB-01.tab-switch[type="radio" name="TAB" checked="checked"]

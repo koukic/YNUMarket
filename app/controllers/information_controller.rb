@@ -1,16 +1,10 @@
 class InformationController < ApplicationController
   before_action :set_information, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_room, only: %i[index show]
   # GET /information
   # GET /information.json
   def index
-    # @cart = (session[:cart_id] ? Cart.find_by(id: session[:cart_id]) : Cart.find_by(id: current_user&.cart&.id))
-    @cart = Cart.find_by(id: current_user&.cart&.id)
-    @rooms = current_user&.rooms
-    @chat_rooms = @rooms&.select do |room|
-      User.find_by(id: room.entries.first.user_id).name != current_user.name
-    end
-
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
     else
@@ -24,11 +18,6 @@ class InformationController < ApplicationController
   # GET /information/1
   # GET /information/1.json
   def show
-    @cart = Cart.find_by(id: current_user&.cart&.id)
-    @rooms = current_user&.rooms
-    @chat_rooms = @rooms&.select do |room|
-      User.find_by(id: room.entries.first.user_id).name != current_user.name
-    end
     @information = Information.find(params[:id])
   end
   # GET /information/new
@@ -113,5 +102,13 @@ class InformationController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def information_params
       params.require(:information).permit(:condition, :title, :description, :tag_list, :price, images: [])
+    end
+
+    def set_room
+      @cart = Cart.find_by(id: current_user&.cart&.id)
+      @rooms = current_user&.rooms
+      @chat_rooms = @rooms&.select do |room|
+        User.find_by(id: room.entries.first.user_id).name != current_user.name
+      end
     end
 end
