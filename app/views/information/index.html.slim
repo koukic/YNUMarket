@@ -1,8 +1,10 @@
+- set_meta_tags title: "投稿一覧ページ"
+
 - content_for :header do
   section.hero.is-warning
     .hero-body
       .container
-        h1.f3.fw6
+        h1.f4.fw6
           |  本サービスの特徴
         ul
           li.fw8.mt2
@@ -12,14 +14,13 @@
           li.fw8.mt2.mb2
             | ・コロナウイルスのため例年よりサークルが選びにくいと思うのでサークル紹介機能もあります！
 
-            h1.f3.fw6
+            h1.f4.fw6.mt2
               |  使い方
             .mt2
               a[href="/buy_guide"]
-                | 購入、投稿者とのチャットの仕方(タップしてください)
-            .mt2
-              a[href="/sell_guide"]
-                | 投稿、購入希望者とのコンタクトの取る方法（タップしてください）
+                | 購入ガイド
+              a[href="/sell_guide" class="ml2"]
+                | 投稿ガイド
         = form_tag :search_information_index, method: :get, class: "search" do
           .field.is-grouped
             p.control.is-expanded

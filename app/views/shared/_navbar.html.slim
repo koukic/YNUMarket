@@ -8,8 +8,6 @@ nav.header__nav
   ul.header__list.header__list--hidden
     li.header__item
       = link_to 'トップページへ', root_path
-    li.header__item
-      =link_to '使い方', 'https://youtu.be/DarjUgCCTKg'
     - if user_signed_in?
       li.header__item
         = link_to '投稿をする', new_information_path
@@ -54,6 +52,8 @@ nav.header__nav
       li.header__item
         = link_to "ログアウト", destroy_user_session_path, method: :delete
     - else
+      li.header__item
+        = link_to '投稿する', new_user_registration_path
       li.header__item
         = link_to "ログイン", new_user_session_path
       li.header__item

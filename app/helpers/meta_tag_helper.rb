@@ -19,7 +19,7 @@ module MetaTagHelper
         locale: 'ja_JP'
       },
       twitter: {
-        site: '@@02P2YpFj7JlGIeO',
+        site: '@02P2YpFj7JlGIeO',
         card: 'summary'
       }
     }

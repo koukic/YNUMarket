@@ -2,8 +2,10 @@
   .container
     .columns.is-centered
       .column.is-4
-        h2.title.is-2
+        h2.f3.fw6.is-2
           | 新規作成
+        .mt2
+          | 投稿をする、リストに追加するにはユーザー登録が必要です
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = f.error_notification
           .field
