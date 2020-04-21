@@ -5,12 +5,12 @@
       .columns
         .field.column.is-9
           .control
-            = f.input :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "タイトル",placeholder: "商品名orサービス名"
+            = f.input :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label"}, label: "タイトル",placeholder: "商品名orサービス名orサークル名"
 
       .field
         .control
           label.label
-            | *説明
+            | *説明（サークルのwebサイトあれば貼ってください）
 
           = f.text_area :description, required: true, class: "textarea"
 
