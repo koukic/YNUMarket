@@ -1,7 +1,7 @@
 class Information < ApplicationRecord
   acts_as_taggable
   paginates_per 10
-  before_destroy :not_referenced_by_any_line_item
+  # before_destroy :not_referenced_by_any_line_item
   has_many :information_images, dependent: :destroy
   accepts_nested_attributes_for :information_images
   # mount_uploaders :image, ImageUploader
@@ -89,10 +89,10 @@ class Information < ApplicationRecord
 
   private
 
-  def not_referenced_by_any_line_item
-    unless line_items.empty?
-      errors.add(:base, "Line items present")
-      throw :abort
-    end
-  end
+  # def not_referenced_by_any_line_item
+  #   unless line_items.empty?
+  #     errors.add(:base, "Line items present")
+  #     throw :abort
+  #   end
+  # end
 end

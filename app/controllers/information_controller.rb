@@ -5,6 +5,7 @@ class InformationController < ApplicationController
   # GET /information
   # GET /information.json
   def index
+    # @user = User.find(1)
     if params[:tag_name]
       @informations = Information.tagged_with("#{params[:tag_name]}").order(:id).page params[:page]
     else
