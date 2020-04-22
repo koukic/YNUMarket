@@ -11,36 +11,40 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @cart = Cart.find_by(id: current_user&.cart&.id)
-    @rooms = current_user&.rooms
-    @chat_rooms = @rooms&.select do |room|
-      User.find_by(id: room.entries.first.user_id).name != current_user.name
-    end
+    # @cart = Cart.find_by(id: current_user&.cart&.id)
+    # @rooms = current_user&.rooms
+    # @chat_rooms = @rooms&.select do |room|
+    #   User.find_by(id: room.entries.first.user_id).name != current_user.name
+    # end
+    #
+    # @line_items = @cart.line_items
+    # @users = @line_items.map{ |line_item| line_item.information.user }
+    #
+    # @line_items.each do |item|
+    #   @user = item.information.user
+    # end
+    #
+    # @currentUserEntry = Entry.find(user_id: current_user.id)
+    # @userEntry = Entry.where(user_id: @user&.id)
+    #
+    # @room = Room.new
+    # @entry = Entry.new
 
-    @line_items = @cart.line_items
-    @line_items.each do |item|
-      @user = item.information.user
-    end
-
-    @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user&.id)
-
-    if @user&.id == current_user.id
-    else
-      @currentUserEntry.each do |cu|
-        @userEntry.each do |u|
-          if cu.room_id == u.room_id
-            @isRoom = true
-            @roomId = cu.room_id
-          end
-        end
-      end
-      if @isRoom
-      else
-        @room = Room.new
-        @entry = Entry.new
-      end
-    end
+    # unless @user&.id == current_user.id
+    #   @currentUserEntry.each do |cu|
+    #     @userEntry.each do |u|
+    #       if cu.room_id == u.room_id
+    #         @isRoom = true
+    #         @roomId = cu.room_id
+    #       end
+    #     end
+    #   end
+    #   if @isRoom
+    #   else
+    #     @room = Room.new
+    #     @entry = Entry.new
+    #   end
+    # end
 
   end
 
