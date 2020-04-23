@@ -1,5 +1,7 @@
 .columns
   .column.is-8.is-centered
+    .fw7.mb2
+      | 値段以外は必ず記入してください
     = simple_form_for @information, html: { multipart: true } do |f|
       = f.error_notification
       .columns

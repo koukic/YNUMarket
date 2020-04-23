@@ -15,6 +15,7 @@ class Information < ApplicationRecord
   allowed."}
   validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum
   allowed."}
+  validates :information_images, length: { minimum: 1, maximum: 32 }
   TAGLIST = [
             {
               "category"=> "フリマ",

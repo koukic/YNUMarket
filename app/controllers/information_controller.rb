@@ -37,10 +37,12 @@ class InformationController < ApplicationController
   # POST /information
   # POST /information.json
   def create
+    binding.pry
     temp_params = information_params
     images = temp_params.delete(:images)
     @information = current_user.informations.build(temp_params)
-    images.each do |image|
+
+    images&.each do |image|
       @information.information_images.new(image: image)
     end
 
