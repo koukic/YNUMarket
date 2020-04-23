@@ -5,7 +5,7 @@
 hr
 .section.min-height
   / = render(@cart.line_items)
-  = render @cart.line_items
+  = render @cart.line_items, currentUserEntry: @currentUserEntry, room: @room, entry: @entry, isRoom: @isRoom
 
   /   .column
   /     = button_to 'リストを空にする', @cart, method: :delete, data: { confirm: "本当にリストを空にしますか？ " }, class: "button is-danger"

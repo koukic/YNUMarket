@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CartsController < ApplicationController
-   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
+  before_action :set_cart, only: %i[show edit update destroy]
 
   # GET /carts
   # GET /carts.json
@@ -24,11 +26,12 @@ class CartsController < ApplicationController
     #   @user = item.information.user
     # end
     #
-    # @currentUserEntry = Entry.find(user_id: current_user.id)
+    @currentUserEntry = Entry.where(user_id: current_user.id)
     # @userEntry = Entry.where(user_id: @user&.id)
     #
-    # @room = Room.new
-    # @entry = Entry.new
+    @room = Room.new
+    @entry = Entry.new
+    @isRoom = false
 
     # unless @user&.id == current_user.id
     #   @currentUserEntry.each do |cu|
@@ -45,7 +48,6 @@ class CartsController < ApplicationController
     #     @entry = Entry.new
     #   end
     # end
-
   end
 
   # GET /carts/new
@@ -54,8 +56,7 @@ class CartsController < ApplicationController
   end
 
   # GET /carts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /carts
   # POST /carts.json
@@ -98,19 +99,19 @@ class CartsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cart_params
-      params.fetch(:cart, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart
+    @cart = Cart.find(params[:id])
+  end
 
-    def invalid_cart
-      logger.error "Attempt to access invalid cart #{params[:id]}"
-      redirect_to root_path, notice: "That cart doesn't exist"
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cart_params
+    params.fetch(:cart, {})
+  end
 
+  def invalid_cart
+    logger.error "Attempt to access invalid cart #{params[:id]}"
+    redirect_to root_path, notice: "That cart doesn't exist"
+  end
 end
