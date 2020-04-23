@@ -21,16 +21,12 @@
           - if cu.room_id == u.room_id
             - isRoom = true
             = link_to 'チャットへ', room_path(cu.room_id), class: "button is-small mb-4 is-info ml2"
-          / - else
-          /   = form_for room do |f|
-          /     = fields_for entry do |e|
-          /       = e.hidden_field :user_id, value: line_item.information.user.id
-          /     = f.submit 'チャットを始める', class: "button is-small mb-4 is-info mt2"
-      - if isRoom == false
-        = form_for room do |f|
-          = fields_for entry do |e|
-            = e.hidden_field :user_id, value: line_item.information.user.id
-          = f.submit 'チャットを始める', class: "button is-small mb-4 is-info mt2"
+
+    - if isRoom == false
+      = form_for room do |f|
+        = fields_for entry do |e|
+          = e.hidden_field :user_id, value: line_item.information.user.id
+        = f.submit 'チャットを始める', class: "button is-small mb-4 is-info mt2"
 
 
 |  <hr/ >
