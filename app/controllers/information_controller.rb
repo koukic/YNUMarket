@@ -9,14 +9,14 @@ class InformationController < ApplicationController
   def index
     @user = User.find(1)
     if params[:tag_name]
-      @informations = Information.tagged_with(params[:tag_name].to_s).order(:id).page params[:page]
+      @informations = Information.tagged_with(params[:tag_name].to_s).order(created_at: :desc).page params[:page]
     else
       @informations = Information.order(created_at: :desc).page params[:page]
     end
 
     @information_furima = Information.tagged_with('フリマ').order(created_at: :desc).page params[:page]
     @information_service = Information.tagged_with('サービス').order(created_at: :desc).page params[:page]
-    @information_circle = Information.tagged_with('サークル').order(:id).page params[:page]
+    @information_circle = Information.tagged_with('サークル・部活').order(created_at: :desc).page params[:page]
   end
 
   # GET /information/1
@@ -47,21 +47,23 @@ class InformationController < ApplicationController
     end
 
     if @information.tag_list == ['フリマand教科書']
-      @information.tag_list = %W[\u30D5\u30EA\u30DE \u6559\u79D1\u66F8]
+      @information.tag_list = ['フリマ', '教科書']
     elsif @information.tag_list == ['フリマand本・漫画']
       @information.tag_list = ['フリマ', '本・漫画']
     elsif @information.tag_list == ['フリマandインテリア・家具']
       @information.tag_list == ['フリマ', 'インテリア・家具']
     elsif @information.tag_list == ['フリマandスポーツ']
-      @information.tag_list = %W[\u30D5\u30EA\u30DE \u30B9\u30DD\u30FC\u30C4]
+      @information.tag_list = ['フリマ', 'スポーツ']
     elsif @information.tag_list == ['フリマandその他']
-      @information.tag_list = %W[\u30D5\u30EA\u30DE \u305D\u306E\u4ED6]
+      @information.tag_list = ['フリマ', 'その他']
     elsif @information.tag_list == ['サービス']
       @information.tag_list = ['サービス']
-    elsif @information.tag_list == ['サークルandサークル・スポーツ']
-      @information.tag_list = ['サークル', 'サークル・スポーツ']
-    elsif @information.tag_list == ['サークルandサークル・文化系']
-      @information.tag_list = ['サークル', 'サークル・文化系']
+    elsif @information.tag_list == ['サークル・部活andサークル・スポーツ']
+      @information.tag_list = ['サークル・部活', 'サークル・スポーツ']
+    elsif @information.tag_list == ['サークル・部活andサークル・文化系']
+      @information.tag_list = ['サークル・部活', 'サークル・文化系']
+    elsif @information.tag_list == ['サークル・部活and部活動']
+      @information.tag_list = ['サークル・部活', '部活動']
     end
 
     respond_to do |format|
