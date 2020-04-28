@@ -1,47 +1,48 @@
 - content_for :header do
   section.hero.is-warning
-    .hero-body
-      .container
-        h1.f4.fw6
-          |  本サービスの特徴
-        ul
-          li.fw8.mt2
-            | ・横国生向けのフリマ、サービス、サークル紹介アプリです
-          li.fw8.mt2
-            | ・手数料は無料です！
-          li.fw8.mt2.mb2
-            | ・チャット機能もあるのでLINEなどを交換する必要もありません！
+    .hero-body2
+      / .container
+      /   h1.f4.fw6
+      /     |  本サービスの特徴
+      /   ul
+      /     li.fw8.mt2
+      /       | ・横国生向けのフリマ、サービス、サークル紹介アプリです
+      /     li.fw8.mt2
+      /       | ・手数料は無料です！
+      /     li.fw8.mt2.mb2
+      /       | ・チャット機能もあるのでLINEなどを交換する必要もありません！
 
-            h1.f4.fw6.mt2
-              |  使い方
-            .mt2
-              a[href="/buy_guide"]
-                | 購入ガイド
-              a[href="/sell_guide" class="ml2"]
-                | 投稿ガイド
+      /       h1.f4.fw6.mt2
+      /         |  使い方
+      /       .mt2
+      /         a[href="/buy_guide"]
+      /           | 購入ガイド
+      /         a[href="/sell_guide" class="ml2"]
+      /           | 投稿ガイド
+      .container
+
         = form_tag :search_information_index, method: :get, class: "search" do
           .field.is-grouped
             p.control.is-expanded
-              = text_field_tag "q",params[:q], placeholder:"キーワード検索",class: 'input'
-
+              = text_field_tag "q",params[:q], placeholder:"何をお探しですか？",class: 'input'
             p.control
               = submit_tag "検索", class: 'button is-default'
 
-        .dropdown.dropdown-category
-          .dropdown-trigger
-            button.button[aria-haspopup="true" aria-controls="dropdown-menu2"]
-              span
-                | カテゴリー検索
-              span.icon.is-small
-                i.fas.fa-angle-down
-          #dropdown-menu2.dropdown-menu[role="menu"]
-            .dropdown-content
-              - Information::TAGLIST.sort { |category1, category2| category1['order'] <=> category2['order'] }.map do |category|
-                  .dropdown-item.fw7
-                    = link_to category["category"], information_index_path(tag_name: category["category"])
-                  - category["items"].sort { |item1, item2| item1['order'] <=> item2['order'] }.map do |item|
-                    .dropdown-item
-                      = link_to item["name"], information_index_path(tag_name: item["name"])
+          .dropdown.dropdown-category
+            .dropdown-trigger
+              button.button[aria-haspopup="true" aria-controls="dropdown-menu2"]
+                span
+                  | カテゴリー検索
+                span.icon.is-small
+                  i.fas.fa-angle-down
+            #dropdown-menu2.dropdown-menu[role="menu"]
+              .dropdown-content
+                - Information::TAGLIST.sort { |category1, category2| category1['order'] <=> category2['order'] }.map do |category|
+                    .dropdown-item.fw7
+                      = link_to category["category"], information_index_path(tag_name: category["category"])
+                    - category["items"].sort { |item1, item2| item1['order'] <=> item2['order'] }.map do |item|
+                      .dropdown-item
+                        = link_to item["name"], information_index_path(tag_name: item["name"])
 
 .tab-wrap
   input#TAB-01.tab-switch[type="radio" name="TAB" checked="checked"]

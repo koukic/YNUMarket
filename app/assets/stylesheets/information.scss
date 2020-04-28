@@ -10,6 +10,17 @@
   }
 }
 
+.hero-body2 {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 1.5rem 0.5rem;
+}
+
+.hero-section {
+  width: auto;
+}
+
 .information-title {
   margin-bottom: 10px;
   font-weight: 400;
@@ -29,7 +40,8 @@
 	flex: 1;
 	font-weight: bold;
 	order: -1;
-	padding: 12px 24px;
+	padding: 14px 1px;
+  font-size: 13px;
 	position: relative;
 	text-align: center;
 	transition: cubic-bezier(0.4, 0, 0.2, 1) .2s;

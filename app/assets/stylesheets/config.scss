@@ -12,7 +12,7 @@
 }
 
  @mixin media-pc {
-   @media (min-width: 769px) {
+   @media (min-width: 1138px) {
      @content;
    }
  }
@@ -156,7 +156,7 @@ $pc-x-padding: 16px;
 
     &__item {
       height: $header-height-pc;
-      margin-left: 30px;
+      margin-left: 25px;
       border: none;
       list-style: none;
       line-height: $header-height-pc;

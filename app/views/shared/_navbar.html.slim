@@ -10,9 +10,13 @@ nav.header__nav
       = link_to 'トップページへ', root_path
     - if user_signed_in?
       li.header__item
-        = link_to '投稿をする', new_information_path
+        a[href="/buy_guide"]
+          | 購入ガイド
       li.header__item
-        = link_to 'アカウント', edit_user_registration_path
+        a[href="/sell_guide"]
+          | 投稿ガイド
+      li.header__item
+        = link_to '投稿をする', new_information_path
       - if @cart
 
         li.header__item
@@ -34,24 +38,18 @@ nav.header__nav
                 | チャット
                 = room_count_over_one
 
-
-      / li.header__item
-      /   .dropdown.dropdown-room
-      /     .dropdown-trigger
-      /       | チャット
-      /       span.icon.is-small
-      /         i.fas.fa-angle-down
-      /     #dropdown-menu2.dropdown-menu[role="menu"]
-      /       .dropdown-content
-              / - @rooms&.each do |room|
-              /   = link_to room_path(room) do
-              /     - if room.users.map(&:name).first != current_user.name
-              /       span.header__item-list
-              /         = room.users.map(&:name).first
+      li.header__item
+        = link_to 'アカウント', edit_user_registration_path
 
       li.header__item
         = link_to "ログアウト", destroy_user_session_path, method: :delete
     - else
+      li.header__item
+        a[href="/buy_guide"]
+          | 購入ガイド
+      li.header__item
+        a[href="/sell_guide"]
+          | 投稿ガイド
       li.header__item
         = link_to '投稿する', new_user_registration_path
       li.header__item
