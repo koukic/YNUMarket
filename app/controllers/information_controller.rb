@@ -37,7 +37,6 @@ class InformationController < ApplicationController
   # POST /information
   # POST /information.json
   def create
-    binding.pry
     temp_params = information_params
     images = temp_params.delete(:images)
     @information = current_user.informations.build(temp_params)
