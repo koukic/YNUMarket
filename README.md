@@ -1,3 +1,12 @@
+# setup
+```
+❯ git clone git@github.com:koukic/YNUMarket
+❯ docker-compose build
+❯ docker-compose run --rm app rails db:create
+❯ docker-compose run --rm app rails db:setup
+❯ docker-compose up
+```
+
 # overview
 [![Image from Gyazo](https://i.gyazo.com/65e35052a97d4bb44a4af08e18d98396.png)](https://gyazo.com/65e35052a97d4bb44a4af08e18d98396)
 
