@@ -7,6 +7,12 @@
 ❯ docker-compose up
 ```
 
+# DB
+```
+❯ docker-compose exec postgres bash
+root@ecbc9f93768e:/# psql -d test_development
+```
+
 # overview
 [![Image from Gyazo](https://i.gyazo.com/65e35052a97d4bb44a4af08e18d98396.png)](https://gyazo.com/65e35052a97d4bb44a4af08e18d98396)
 
